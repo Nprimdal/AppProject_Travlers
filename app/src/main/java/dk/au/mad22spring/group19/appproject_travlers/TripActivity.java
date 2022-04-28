@@ -42,6 +42,9 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.person:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ProfileFragment()).commit();
                 return true;
+            case R.id.search:
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).commit();
+                return true;
         }
         return false;
     }
