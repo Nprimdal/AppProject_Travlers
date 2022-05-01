@@ -19,12 +19,9 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-
          bottomNavigationView = findViewById(R.id.bottomNavigationView);
          bottomNavigationView.setOnNavigationItemSelectedListener(this);
          bottomNavigationView.setSelectedItemId(R.id.home);
-
-
 
     }
 
