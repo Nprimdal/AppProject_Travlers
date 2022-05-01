@@ -17,4 +17,15 @@
     <string name="txtSearchTitle">Discover Cities</string>
     <string name="btnSearch">Search</string>
     <string name="txtAddInfo">Click in list to add city to you trip library</string>
+    <string name="txtNoTripsInfo">Your travel overview is empty</string>
+    <string name="txtTripsTitle">Travel Overview</string>
+    <string name="tbnAddCity">Add City</string>
+    <string name="txtProfileTitle">My Profile</string>
+    <string name="btnLogOut">Log out</string>
+    <string name="txtNameInput">First Name</string>
+    <string name="editLastNameInput">Last Name</string>
+    <string name="txtChangePasswordTitle">Change Password</string>
+    <string name="edtChangePassword">New Password</string>
+    <string name="edtChangePasswordConfirm">Confirm Password</string>
+    <string name="btnSaveProfileChanges">Save</string>
 </resources>

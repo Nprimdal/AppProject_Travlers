@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,8 +22,10 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
 
          bottomNavigationView = findViewById(R.id.bottomNavigationView);
          bottomNavigationView.setOnNavigationItemSelectedListener(this);
-         bottomNavigationView.setSelectedItemId(R.id.home);
 
+         if (savedInstanceState == null){
+             bottomNavigationView.setSelectedItemId(R.id.home);
+         }
     }
 
     @Override
