@@ -6,6 +6,12 @@
         <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_trip.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.1935" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/trip_details_text_view_border.xml" value="0.1895" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_trip.xml" value="0.22760416666666666" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_trip_details.xml" value="0.33" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/list_item_trips.xml" value="0.5" />
       </map>
     </option>
   </component>
