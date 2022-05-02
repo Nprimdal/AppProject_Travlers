@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSearchTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvSearchAndAdd"
+        android:id="@+id/rcvCities"
         android:layout_width="0dp"
         android:layout_height="254dp"
         android:layout_marginStart="24dp"

@@ -31,6 +31,8 @@ public class CityAPI implements Serializable {
     public CityAPI(Repository repository, Context context){
         this.repository = repository;
         this.context = context;
+
+        tripsModelList = new MutableLiveData<>(new ArrayList<>());
     }
 
     //Gets cities from api by name
@@ -47,36 +49,37 @@ public class CityAPI implements Serializable {
         return tripsModelList;
     }
 
-    //Calls the base url for loading drink data from API by name
+    //Loads city data from base url
     public void loadCities(String cityName){
-        String baseUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a98c6ec87e41a4e73b8f9f9daa3e170f&units=metric";
-        sendRequest(baseUrl, false);
+        //String baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=a98c6ec87e41a4e73b8f9f9daa3e170f&units=metric";
+        String baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=a98c6ec87e41a4e73b8f9f9daa3e170f&units=metric";
+        sendRequest(baseUrl);
     }
 
     //Sends request via volley
-    private void sendRequest(String url, boolean onStartUp){
+    private void sendRequest(String url){
         if(queue == null){
-            queue = Volley.newRequestQueue(TripApplication.getAppContext());
+            queue = Volley.newRequestQueue(context);
         }
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, "onResponse: " + response);
-                        parseJson(response, onStartUp);
+                        parseJson(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG,"onErrorResponse",error);
-                Toast.makeText(context, "Something went wrong. Unable to find drink.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong. Unable to find city.", Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(stringRequest);
     }
 
     //Parse city objects to Json
-    private void parseJson(String json, boolean onStartUp) {
+    private void parseJson(String json) {
         Gson gson = new GsonBuilder().create();
         CityDTO cityInfo = gson.fromJson(json, CityDTO.class);
 
@@ -86,16 +89,11 @@ public class CityAPI implements Serializable {
             trip.setCountryName(cityInfo.getSys().getCountry());
             trip.setCityTimeZone(cityInfo.getTimezone());
 
-            if (onStartUp) {
-                repository.addTripAsynch(trip);
-                Log.d(TAG, "parseJson: created startup drinks");
-            } else {
                 tripModels.add(trip);
-                Log.d(TAG, "parseJson: Added drink to search list");
-            }
+                Log.d(TAG, "parseJson: added drink to search list");
         }
         else {
-            Toast.makeText(context, "INFO TEXT=!==!.", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Was unable to retrieve city information.", Toast.LENGTH_LONG).show();
 
         }
 

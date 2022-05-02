@@ -36,14 +36,14 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
             case R.id.location:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new MapFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new MapFragment()).addToBackStack(null).commit();
                 return true;
 
             case R.id.person:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ProfileFragment()).addToBackStack(null).commit();
                 return true;
             case R.id.search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).addToBackStack(null).commit();
                 return true;
         }
         return false;

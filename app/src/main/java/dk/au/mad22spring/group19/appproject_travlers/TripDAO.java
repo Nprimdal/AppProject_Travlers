@@ -13,4 +13,7 @@ public interface TripDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addTrip(TripModel trip);
+
+    @Query("SELECT Count() FROM TripModel WHERE cityName LIKE :name")
+    int findNumberOfCities(String name);
 }
