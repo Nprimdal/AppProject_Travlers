@@ -14,7 +14,7 @@
 
 
         <RatingBar
-            android:id="@+id/rtnStars"
+            android:id="@+id/rtnStarsOverview"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,11 +60,11 @@
             android:layout_height="14dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/rtnStars"
+            app:layout_constraintBottom_toBottomOf="@+id/rtnStarsOverview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/rtnStars"
-            app:layout_constraintTop_toTopOf="@+id/rtnStars"
+            app:layout_constraintStart_toEndOf="@+id/rtnStarsOverview"
+            app:layout_constraintTop_toTopOf="@+id/rtnStarsOverview"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_flight_24" />
 
@@ -74,11 +74,11 @@
             android:layout_height="14dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/rtnStars"
+            app:layout_constraintBottom_toBottomOf="@+id/rtnStarsOverview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/rtnStars"
-            app:layout_constraintTop_toTopOf="@+id/rtnStars"
+            app:layout_constraintStart_toEndOf="@+id/rtnStarsOverview"
+            app:layout_constraintTop_toTopOf="@+id/rtnStarsOverview"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 

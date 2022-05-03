@@ -11,6 +11,9 @@ import java.util.List;
 public interface TripDAO {
     //DAO (Data Access Object): This class provides the methods used to interact with data in the Trip-table.
 
+    @Query("SELECT * FROM TripModel")
+    LiveData<List<TripModel>> getAll();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addTrip(TripModel trip);
 

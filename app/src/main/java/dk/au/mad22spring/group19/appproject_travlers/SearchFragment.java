@@ -16,11 +16,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class SearchFragment extends Fragment  implements CityListAdaptor.IDrinkClickedListener{
+public class SearchFragment extends Fragment  implements CityListAdapter.ICityClickedListener {
 
     //References:
     private RecyclerView rcv;
-    private CityListAdaptor cityListAdaptor;
+    private CityListAdapter cityListAdaptor;
     private ArrayList<TripModel> trips = new ArrayList<>();
     private TripViewModel tripViewModel;
     private EditText edtSearchCity;
@@ -30,7 +30,6 @@ public class SearchFragment extends Fragment  implements CityListAdaptor.IDrinkC
     public SearchFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +42,7 @@ public class SearchFragment extends Fragment  implements CityListAdaptor.IDrinkC
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
 
         //Set up adapter and recyclerView
-        cityListAdaptor = new CityListAdaptor(trips, this);
+        cityListAdaptor = new CityListAdapter(trips, this);
 
         rcv = (RecyclerView) view.findViewById(R.id.rcvCities);
         rcv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -68,6 +67,7 @@ public class SearchFragment extends Fragment  implements CityListAdaptor.IDrinkC
         return view;
     }
 
+    //Gets cities and calls update on recyclerView
     private void searchCity(String searchString) {
         tripViewModel.getCities(searchString).observe(this, tripVM ->{
             trips = tripVM;

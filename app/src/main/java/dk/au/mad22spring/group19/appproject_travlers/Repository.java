@@ -27,6 +27,9 @@ public class Repository {
         cityAPI = new CityAPI(this, context);
         executor = Executors.newSingleThreadExecutor();
 
+        //Retrieves trips from database
+        trips = tripDatabase.tripDAO().getAll();
+
     }
 
     public static Repository getInstance(){
@@ -51,7 +54,7 @@ public class Repository {
 
         return data;
     }
-    //Adds a trip to database
+    //Add a trip to database
     public void addCityAsynch(TripModel city){
         executor.execute(new Runnable() {
             @Override
@@ -59,6 +62,12 @@ public class Repository {
                 tripDatabase.tripDAO().addTrip(city);
             }
         });
+    }
+
+    //Get trips from database
+    public LiveData<List<TripModel>> getAllTrips(){
+
+        return trips;
     }
 
 }
