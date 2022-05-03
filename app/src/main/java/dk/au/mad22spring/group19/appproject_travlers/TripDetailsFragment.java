@@ -15,7 +15,11 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class TripDetailsFragment extends Fragment {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+
+public class TripDetailsFragment extends Fragment implements OnMapReadyCallback {
 
     private TripViewModel tripViewModel;
     private TextView txtCityName, txtCountryName;
@@ -72,9 +76,16 @@ public class TripDetailsFragment extends Fragment {
 
         //Set up delete button
 
-
+//      SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentMap);
+//        mapFragment.getMapAsync(this);
 
         return view;
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+
     }
 
     private void updateTripDetailsUI() {
