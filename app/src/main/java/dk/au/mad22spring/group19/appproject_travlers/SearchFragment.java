@@ -79,7 +79,7 @@ public class SearchFragment extends Fragment  implements CityListAdapter.ICityCl
     //Adds city to database
     @Override
     public void onCityClicked(int position) {
-        tripViewModel.findNumberOfCity(trips.get(position)).observe(this, integer -> {
+        tripViewModel.getNumberOfCity(trips.get(position)).observe(this, integer -> {
             if (integer > 0){
 
                 Toast.makeText(getContext(), "City already exists in your travel overview.", Toast.LENGTH_SHORT).show();

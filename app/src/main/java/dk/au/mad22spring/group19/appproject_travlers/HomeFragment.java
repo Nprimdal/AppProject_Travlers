@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         //Set up view model
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
 
-        //Gets trips and updates adapter
+        //Retrieves trips and updates adapter
         tripViewModel.getTrips().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
             @Override
             public void onChanged(List<TripModel> tripModels) {
@@ -60,8 +61,10 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         rcv.setLayoutManager(new LinearLayoutManager(getContext()));
         rcv.setAdapter(tripAdapter);
 
-        //Add button - replaces view with searchFragment
+        //Get views
         layoutAddCity = (LinearLayout) view.findViewById(R.id.homeAddCityLayout);
+
+        //Add button - replaces view with searchFragment
         btnAddCity = (Button) view.findViewById(R.id.btnAddCity);
         btnAddCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,10 +77,14 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
     }
 
     @Override
-    public void onCityClicked(int position) { cityDetailsFragment(tripViewModel.getTrips().getValue().get(position)); }
+    public void onCityClicked(int position) {
+        cityDetailsFragment(tripViewModel.getTrips().getValue().get(position));
+    }
     private void cityDetailsFragment(TripModel tripModel) {
+        tripViewModel.updateCurrentSelection(tripModel);
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new TripDetailsFragment()).addToBackStack(null).commit();
     }
+
 
 
 

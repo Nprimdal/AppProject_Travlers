@@ -36,4 +36,6 @@
     <string name="txtViewSatellit">Satellit</string>
     <string name="txtViewHybrid">Hybrid</string>
     <string name="txtViewTarrain">Tarrain</string>
+    <string name="txtTimeZoneTitle">Time zone:</string>
+    <string name="txtCountryNameTitleDetails">Country:</string>
 </resources>

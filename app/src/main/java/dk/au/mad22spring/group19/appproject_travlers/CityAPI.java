@@ -87,7 +87,6 @@ public class CityAPI implements Serializable {
             TripModel trip = new TripModel();
             trip.setCityName(cityInfo.getName());
             trip.setCountryName(cityInfo.getSys().getCountry());
-            trip.setCityTimeZone(cityInfo.getTimezone());
             trip.setLat(cityInfo.getCoord().getLat());
             trip.setLon(cityInfo.getCoord().getLon());
 

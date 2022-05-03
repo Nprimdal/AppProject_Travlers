@@ -10,9 +10,9 @@ public class TripModel implements Serializable {
 
     //Widgets:
     public String cityName, countryName, travelPlanNotes, travelJournalNotes;
-    public float travelUserRating, cityTimeZone;
     public boolean userVisitedCity;
     public double lon, lat;
+    public float travelUserRating;
 
     //Primary key for database
     @PrimaryKey(autoGenerate = true)
@@ -22,13 +22,12 @@ public class TripModel implements Serializable {
     public TripModel(){}
 
     //Constructor
-    public TripModel(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, float cityTimeZone, boolean userVisitedCity, double lon, double lat){
+    public TripModel(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, boolean userVisitedCity, double lon, double lat){
         this.cityName = cityName;
         this.countryName = countryName;
         this.travelPlanNotes = travelPlanNotes;
         this.travelJournalNotes = travelJournalNotes;
         this.travelUserRating = travelUserRating;
-        this.cityTimeZone = cityTimeZone;
         this.userVisitedCity = userVisitedCity;
         this.lon = lon;
         this.lat = lat;
@@ -74,15 +73,7 @@ public class TripModel implements Serializable {
         this.travelUserRating = travelUserRating;
     }
 
-    public float getCityTimeZone() {
-        return cityTimeZone;
-    }
-
-    public void setCityTimeZone(float cityTimeZone) {
-        this.cityTimeZone = cityTimeZone;
-    }
-
-    public boolean isUserVisitedCity() {
+    public boolean hasUserVisitedCity() {
         return userVisitedCity;
     }
 

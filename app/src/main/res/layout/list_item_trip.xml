@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <RatingBar
             android:id="@+id/rtnStarsOverview"
             style="@style/Widget.AppCompat.RatingBar.Small"
@@ -68,12 +67,12 @@
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_flight_24" />
 
+
         <ImageView
-            android:id="@+id/imgFlight"
+            android:id="@+id/imgCheckMark"
             android:layout_width="17dp"
             android:layout_height="14dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/rtnStarsOverview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

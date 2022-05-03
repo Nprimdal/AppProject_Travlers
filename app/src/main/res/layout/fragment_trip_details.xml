@@ -62,7 +62,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/checkBoxVisited"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rtnUserRating" />
+                app:layout_constraintTop_toBottomOf="@+id/rtnUserRatingDetails" />
 
             <TextView
                 android:id="@+id/txtRatingTitle"
@@ -111,47 +111,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtTravelPlanTitle" />
 
             <TextView
-                android:id="@+id/txtCityDetailsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/txtDetailsTitle"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCityNameDetails" />
-
-            <TextView
                 android:id="@+id/txtTravelPlanTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:text="@string/txtTravelPlanTitle"
                 android:textSize="16sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCityDetails" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCountryNameTitle2" />
 
             <TextView
-                android:id="@+id/txtCityDetails"
+                android:id="@+id/txtCountryNameDetails"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:text="Country #"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/txtCountryNameTitle2"
+                app:layout_constraintTop_toTopOf="@+id/txtCountryNameTitle2" />
+
+            <TextView
+                android:id="@+id/txtCountryNameTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/txtCountryNameTitleDetails"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCityDetailsTitle"
-                tools:text="@string/txtCityDetails" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCityNameDetails" />
 
             <TextView
                 android:id="@+id/txtJournalTitle"
@@ -187,14 +180,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtJournalTitle" />
 
             <RatingBar
-                android:id="@+id/rtnUserRating"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:id="@+id/rtnUserRatingDetails"
+                style="@style/Widget.AppCompat.RatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
+                android:numStars="5"
+                android:stepSize=".5"
                 app:layout_constraintTop_toBottomOf="@+id/txtRatingTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

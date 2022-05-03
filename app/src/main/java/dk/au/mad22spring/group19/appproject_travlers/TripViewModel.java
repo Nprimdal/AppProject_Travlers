@@ -10,10 +10,21 @@ public class TripViewModel extends ViewModel {
 
     //References
     private Repository repository;
+    private LiveData<TripModel> currentSelection;
 
     //Constructor
     public TripViewModel(){
+
         repository = Repository.getInstance();
+        currentSelection = repository.getCurrentSelection();
+    }
+
+    public LiveData<TripModel> getCurrentSelection() {
+        return currentSelection;
+    }
+
+    public void updateCurrentSelection(TripModel tripModel) {
+        repository.setCurrentSelection(tripModel);
     }
 
     public LiveData<ArrayList<TripModel>> getCities(String cityName) {
@@ -27,13 +38,14 @@ public class TripViewModel extends ViewModel {
         return repository.getAllTrips();
     }
 
-
-    public void addCity(TripModel city){ repository.addCityAsynch(city);
-    }
-
-    public LiveData<Integer> findNumberOfCity(TripModel city) {
+    public LiveData<Integer> getNumberOfCity(TripModel city) {
         return repository.getNumberOfSpecificCity(city);
     }
+
+
+    public void addCity(TripModel city){ repository.addCityAsynch(city); }
+
+    public void updateTrip(TripModel trip){repository.updateTripAsynch(trip);}
 
 
 }

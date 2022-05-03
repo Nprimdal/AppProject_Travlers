@@ -3,7 +3,7 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -45,7 +45,18 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         holder.txtCityName.setText(trips.get(position).getCityName());
         holder.txtCountryName.setText(trips.get(position).getCountryName());
         holder.userRating.setRating(trips.get(position).getTravelUserRating());
-        //holder.cityVisited.setChecked(trips.get(position).userVisitedCity);
+
+        for (TripModel trip:trips) {
+
+            if (trip.userVisitedCity){
+                holder.imgFlight.setVisibility(View.GONE);
+            }
+            else{
+                holder.imgCheckMark.setVisibility(View.GONE);
+            }
+        }
+
+
     }
 
     //The number of items we want to display in recyclerView
@@ -64,7 +75,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         //References to views
         TextView txtCityName, txtCountryName;
         RatingBar userRating;
-        CheckBox cityVisited;
+        ImageView imgFlight, imgCheckMark;
 
         //Constructor: gets references to view
         public TripViewHolder(@NonNull View itemView, ITripClickedListener listener) {
@@ -75,7 +86,8 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             txtCityName = itemView.findViewById(R.id.txtCityName);
             txtCountryName = itemView.findViewById(R.id.txtCountryName);
             userRating = itemView.findViewById(R.id.rtnStarsOverview);
-            cityVisited = itemView.findViewById(R.id.checkBoxVisited);
+            imgCheckMark = itemView.findViewById(R.id.imgCheckMark);
+            imgFlight = itemView.findViewById(R.id.imgFlight);
 
             itemView.setOnClickListener(this);
         }

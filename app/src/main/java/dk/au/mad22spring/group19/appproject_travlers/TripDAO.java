@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 @Dao
@@ -19,4 +20,7 @@ public interface TripDAO {
 
     @Query("SELECT Count() FROM TripModel WHERE cityName LIKE :name")
     int findNumberOfCities(String name);
+
+    @Update
+    void updateTrip(TripModel tripModel);
 }
