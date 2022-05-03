@@ -1,5 +1,6 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
     private List<TripModel> trips;
     private RecyclerView rcv;
     private Button btnAddCity;
+    private LinearLayout layoutAddCity;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -37,12 +40,17 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         //Set up view model
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
 
-        //Hvad er getViewLifeCycleOwner??????
+        //Gets trips and updates adapter
         tripViewModel.getTrips().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
             @Override
             public void onChanged(List<TripModel> tripModels) {
                 trips = tripModels;
                 tripAdapter.updateCityModel(trips);
+
+                if(trips.size() == 0){
+                    rcv.setVisibility(View.GONE);
+                    layoutAddCity.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -53,6 +61,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         rcv.setAdapter(tripAdapter);
 
         //Add button - replaces view with searchFragment
+        layoutAddCity = (LinearLayout) view.findViewById(R.id.homeAddCityLayout);
         btnAddCity = (Button) view.findViewById(R.id.btnAddCity);
         btnAddCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +74,11 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
     }
 
     @Override
-    public void onCityClicked(int position) {
-
+    public void onCityClicked(int position) { cityDetailsFragment(tripViewModel.getTrips().getValue().get(position)); }
+    private void cityDetailsFragment(TripModel tripModel) {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new TripDetailsFragment()).addToBackStack(null).commit();
     }
+
+
+
 }

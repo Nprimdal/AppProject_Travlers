@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 //Code references:
 //Lecture 4: Demo - using Room (and SharedPreferences)
 
-@Database(entities = {TripModel.class}, version = 1)
+@Database(entities = {TripModel.class}, version = 2)
 public abstract class TripDatabase extends RoomDatabase {
 
     public abstract TripDAO tripDAO(); //get DAO

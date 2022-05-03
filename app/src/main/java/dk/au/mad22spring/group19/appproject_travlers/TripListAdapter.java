@@ -97,17 +97,4 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         trips = tripModels;
         notifyDataSetChanged();
     }
-
-    //Clears ryclerView
-    public void clearRecyclerView(){
-        if(trips.size() != 0){
-
-            for (int i = 0; i < trips.size(); i++) {
-                trips.remove(0);
-            }
-
-            notifyItemRangeRemoved(0, trips.size());
-        }
-        return;
-    }
 }

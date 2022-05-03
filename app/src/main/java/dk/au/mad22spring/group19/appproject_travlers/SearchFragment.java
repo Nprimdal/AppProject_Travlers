@@ -58,8 +58,8 @@ public class SearchFragment extends Fragment  implements CityListAdapter.ICityCl
             public void onClick(View view) {
 
                 searchString = edtSearchCity.getText().toString();
-                cityListAdaptor.clearRecyclerView();
                 searchCity(searchString);
+                cityListAdaptor.clearRecyclerView();
 
             }
         });

@@ -1,5 +1,6 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,11 @@ import java.util.ArrayList;
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityViewHolder> {
 
     private ICityClickedListener listener;
-    private ArrayList<TripModel> trips;
+    private ArrayList<TripModel> cities;
 
     //Constructor
     public CityListAdapter(ArrayList<TripModel> tripModels, ICityClickedListener listener){
-        this.trips = tripModels;
+        this.cities = tripModels;
         this.listener = listener;
 
     }
@@ -40,17 +41,17 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityVi
     //Sets data on the views
     @Override
     public void onBindViewHolder(@NonNull CityViewHolder holder, int position) {
-        holder.txtCityName.setText(trips.get(position).getCityName());
-        holder.txtCountryName.setText(trips.get(position).getCountryName());
+        holder.txtCityName.setText(cities.get(position).getCityName());
+        holder.txtCountryName.setText(cities.get(position).getCountryName());
     }
 
     //The number of items we want to display in recyclerView
     @Override
     public int getItemCount() {
-        if(trips == null){
+        if(cities == null){
             return 0;
         }
-        return trips.size();
+        return cities.size();
     }
 
     public class CityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -86,20 +87,22 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityVi
 
     //Data changed
     public void updateCityModel(ArrayList<TripModel> tripModels){
-        trips = tripModels;
+        cities = tripModels;
         notifyDataSetChanged();
     }
 
     //Clears ryclerView
     public void clearRecyclerView(){
-        if(trips.size() != 0){
 
-            for (int i = 0; i < trips.size(); i++) {
-                trips.remove(0);
-            }
+           for (int i = 0; i < cities.size(); i++) {
 
-            notifyItemRangeRemoved(0, trips.size());
-        }
+           cities.remove(0);
+               Log.d("HEJ", "Loop ");
+
+           }
+            notifyItemRangeRemoved(0, cities.size());
+
+
         return;
     }
 }

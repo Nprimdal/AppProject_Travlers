@@ -88,6 +88,8 @@ public class CityAPI implements Serializable {
             trip.setCityName(cityInfo.getName());
             trip.setCountryName(cityInfo.getSys().getCountry());
             trip.setCityTimeZone(cityInfo.getTimezone());
+            trip.setLat(cityInfo.getCoord().getLat());
+            trip.setLon(cityInfo.getCoord().getLon());
 
                 tripModels.add(trip);
                 Log.d(TAG, "parseJson: added drink to search list");

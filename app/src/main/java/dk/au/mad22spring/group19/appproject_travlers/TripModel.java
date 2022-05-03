@@ -12,6 +12,7 @@ public class TripModel implements Serializable {
     public String cityName, countryName, travelPlanNotes, travelJournalNotes;
     public float travelUserRating, cityTimeZone;
     public boolean userVisitedCity;
+    public double lon, lat;
 
     //Primary key for database
     @PrimaryKey(autoGenerate = true)
@@ -21,7 +22,7 @@ public class TripModel implements Serializable {
     public TripModel(){}
 
     //Constructor
-    public TripModel(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, float cityTimeZone, boolean userVisitedCity){
+    public TripModel(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, float cityTimeZone, boolean userVisitedCity, double lon, double lat){
         this.cityName = cityName;
         this.countryName = countryName;
         this.travelPlanNotes = travelPlanNotes;
@@ -29,6 +30,8 @@ public class TripModel implements Serializable {
         this.travelUserRating = travelUserRating;
         this.cityTimeZone = cityTimeZone;
         this.userVisitedCity = userVisitedCity;
+        this.lon = lon;
+        this.lat = lat;
     }
 
     public String getCityName() {
@@ -93,5 +96,21 @@ public class TripModel implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 }
