@@ -2,4 +2,12 @@
     <string name="app_name">AppProject_Travlers</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnMap"> map </string>
+    <string name="txtViewMapType">Maptype</string>
+    <string name="btnStattelit">Satellit</string>
+    <string name="btnTerrain">Tarrain</string>
+    <string name="btnHybrid" />
+    <string name="txtViewSatellit">Satellit</string>
+    <string name="txtViewHybrid">Hybrid</string>
+    <string name="txtViewTarrain">Tarrain</string>
 </resources>

@@ -6,11 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 //Reference: https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/
 //Reference: https://www.youtube.com/watch?v=Bb8SgfI4Cm4
-public class TripActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class TripActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
 
@@ -48,4 +55,5 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
 }
