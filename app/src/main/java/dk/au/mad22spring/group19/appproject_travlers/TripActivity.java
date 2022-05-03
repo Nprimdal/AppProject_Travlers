@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,13 +27,12 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-
          bottomNavigationView = findViewById(R.id.bottomNavigationView);
          bottomNavigationView.setOnNavigationItemSelectedListener(this);
-         bottomNavigationView.setSelectedItemId(R.id.home);
 
-
-
+         if (savedInstanceState == null){
+             bottomNavigationView.setSelectedItemId(R.id.home);
+         }
     }
 
     @Override
@@ -43,14 +43,14 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
             case R.id.location:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new MapFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new MapFragment()).addToBackStack(null).commit();
                 return true;
 
             case R.id.person:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ProfileFragment()).addToBackStack(null).commit();
                 return true;
             case R.id.search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).addToBackStack(null).commit();
                 return true;
         }
         return false;
