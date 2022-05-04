@@ -42,17 +42,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //login();
-                goToSecurePart();
-            }
+            public void onClick(View view) { login(); }
         });
         txtCreateAccount = findViewById(R.id.txtCreateAccount);
         txtCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { goToCreateNewAccount(); }
         });
-        
         
     }
 
@@ -82,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
     private void goToCreateNewAccount() {
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
-
     }
 
     private void goToSecurePart(){

@@ -20,6 +20,8 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+// Reference: https://www.youtube.com/watch?v=0gNPX52o_7I
+
 public class RegisterActivity extends AppCompatActivity {
 
     public static final String TAG = "AUTH";
@@ -33,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private static final String USER = "user";
-    private User _user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,13 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
                 String fullName = edtFullName.getText().toString();
-                _user = new User(email, password, fullName);
+                user = new User(email, password, fullName);
                 createNewAccount(email, password);
             }
         });
 
-        //database = FirebaseDatabase.getInstance();
-        //mDatabase = database.getReference(USER);
+        database = FirebaseDatabase.getInstance("https://appproject-travlers-default-rtdb.firebaseio.com");
+        mDatabase = database.getReference(USER);
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -74,9 +76,9 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Account created");
                             Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            goToLogin();
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            updateUI(currentUser);
+                            //goToLogin();
                         } else {
                             Log.d(TAG, "Could not create account", task.getException());
                             Toast.makeText(RegisterActivity.this, "FAILED to create account", Toast.LENGTH_SHORT).show();
@@ -91,18 +93,11 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    private void updateUI(FirebaseUser user) {
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().
-                setDisplayName(_user.getFullName()).
-                build();
-
-        user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Log.d(TAG, "User profile updated.");
-                }
-            }
-        });
+    private void updateUI(FirebaseUser currentUser) {
+        String keyId = mDatabase.push().getKey();
+        mDatabase.child(keyId).setValue(user);
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 }
