@@ -119,6 +119,9 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         trip.setTravelJournalNotes(edtTravelJournal.getText().toString());
         trip.setUserVisitedCity(checkBoxCityVisited.isChecked());
         tripViewModel.updateTrip(trip);
+
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+
     }
 
     private void deleteTrip(){
@@ -126,7 +129,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
     }
 
     private void back(){
-
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
     }
 
     @Override
