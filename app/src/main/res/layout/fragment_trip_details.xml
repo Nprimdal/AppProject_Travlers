@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".TripDetailsFragment">
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="413dp"
-        android:layout_height="150dp"
-        android:text="EVT. UDSNIT AF  MAPS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnBackTripDetails"
         android:layout_width="wrap_content"
@@ -38,16 +29,14 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/scrollViewDetails"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnBackTripDetails"
+        app:layout_constraintBottom_toBottomOf="@id/btnBackTripDetails"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/fragmentMap">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -57,11 +46,10 @@
                 android:id="@+id/checkBoxVisited"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/checkBoxVisited"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/rtnUserRatingDetails"
                 app:layout_constraintTop_toBottomOf="@+id/rtnUserRatingDetails" />
 
             <TextView
@@ -69,10 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/txtRatingTitle"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTravelJournal" />
@@ -82,11 +69,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="24sp"
+                android:textSize="34sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,15 +83,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:background="@drawable/text_view_shape"
+                android:fadeScrollbars="false"
+                android:gravity="top"
                 android:hint="@string/txtTravelPlanHint"
-                android:minHeight="48dp"
-                android:textSize="14sp"
+                android:inputType="textMultiLine"
+                android:minHeight="125dp"
+                android:scrollbars="vertical"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTravelPlanTitle" />
 
@@ -115,35 +103,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/txtTravelPlanTitle"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCountryNameTitle2" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCountryNameDetails" />
 
             <TextView
                 android:id="@+id/txtCountryNameDetails"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Country #"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/txtCountryNameTitle2"
-                app:layout_constraintTop_toTopOf="@+id/txtCountryNameTitle2" />
-
-            <TextView
-                android:id="@+id/txtCountryNameTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/txtCountryNameTitleDetails"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:text="Country #"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtCityNameDetails"
+                app:layout_constraintStart_toStartOf="@+id/txtCityNameDetails"
                 app:layout_constraintTop_toBottomOf="@+id/txtCityNameDetails" />
 
             <TextView
@@ -151,13 +129,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:text="@string/txtTravelJournalTitle"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTravelPlan" />
@@ -167,15 +143,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:background="@drawable/text_view_shape"
+                android:fadeScrollbars="false"
+                android:gravity="top"
                 android:hint="@string/txtTravelJournalHint"
-                android:minHeight="48dp"
-                android:textSize="14sp"
+                android:inputType="textMultiLine"
+                android:minHeight="125dp"
+                android:scrollbars="vertical"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtJournalTitle" />
 
@@ -185,14 +164,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
                 android:numStars="5"
                 android:stepSize=".5"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtRatingTitle" />
+
+            <ImageView
+                android:id="@+id/imgFlightDetails"
+                android:layout_width="44dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtCityNameDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtCityNameDetails"
+                app:layout_constraintTop_toTopOf="@+id/txtCityNameDetails"
+                app:srcCompat="@drawable/ic_baseline_flight_24" />
+
+
+            <ImageView
+                android:id="@+id/imgCheckMarkDetails"
+                android:layout_width="44dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtCityNameDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtCityNameDetails"
+                app:layout_constraintTop_toTopOf="@+id/txtCityNameDetails"
+                app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <fragment
+        android:id="@+id/fragmentMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="@+id/textView20"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,18 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="220dp">
 
     <LinearLayout
         android:id="@+id/layMapType"
-        android:layout_width="393dp"
+        android:layout_width="323dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="460dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,27 +29,28 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/btnSatellit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="@string/btnStattelit"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-            <ImageButton
-                android:id="@+id/btnTarrain"
+                android:id="@+id/btnSatallit2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="@string/btnTerrain"
+                android:contentDescription="@string/btnSatellit2"
+                android:minHeight="48dp"
                 app:srcCompat="@android:drawable/ic_lock_idle_lock" />
 
             <ImageButton
-                android:id="@+id/btnHybrid"
+                android:id="@+id/btnTerrain2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="@string/btnTerrain"
+                android:contentDescription="@string/btnTerrain2"
+                app:srcCompat="@android:drawable/ic_menu_send" />
+
+            <ImageButton
+                android:id="@+id/btnNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/btnTerrain2"
                 app:srcCompat="@android:drawable/ic_btn_speak_now" />
         </LinearLayout>
 
@@ -72,14 +71,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/txtViewTarrain" />
+                android:text="@string/txtViewTerrain" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/txtViewHybrid" />
+                android:text="@string/txtViewNormal" />
+
         </LinearLayout>
 
     </LinearLayout>

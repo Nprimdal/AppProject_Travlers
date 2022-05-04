@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         //Set up adapter and recyclerView
         tripAdapter = new TripListAdapter(trips,this);
         rcv = (RecyclerView) view.findViewById(R.id.rcvTrips);
-        rcv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rcv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rcv.setAdapter(tripAdapter);
 
         //Get views

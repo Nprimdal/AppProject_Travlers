@@ -4,12 +4,11 @@
     <string name="txtCityName">City #</string>
     <string name="txtCountryName">Country #</string>
     <string name="txtCityNameDetails">City #</string>
-    <string name="txtCityDetails">Details - include country, timezone</string>
-    <string name="txtTravelPlanHint">Write down trip planning notes - eg. travel dates, hotel bookings, attractions, restaurants etc.</string>
-    <string name="txtTravelJournalHint">Write down all your thoughts, visits, experiences and recommendations regarding this city</string>
+    <string name="txtTravelPlanHint">Your travel plan notes … </string>
+    <string name="txtTravelJournalHint">Your travel notes</string>
     <string name="txtDetailsTitle">Details</string>
-    <string name="txtTravelPlanTitle">Travel plan</string>
-    <string name="txtTravelJournalTitle">Travel journal</string>
+    <string name="txtTravelPlanTitle">Travel plan:</string>
+    <string name="txtTravelJournalTitle">Travel journal:</string>
     <string name="txtRatingTitle">Your rating</string>
     <string name="btnBack">Back</string>
     <string name="checkBoxVisited">I have visited this city</string>
@@ -33,9 +32,14 @@
     <string name="btnStattelit">Satellit</string>
     <string name="btnTerrain">Tarrain</string>
     <string name="btnHybrid" />
-    <string name="txtViewSatellit">Satellit</string>
     <string name="txtViewHybrid">Hybrid</string>
     <string name="txtViewTarrain">Tarrain</string>
     <string name="txtTimeZoneTitle">Time zone:</string>
     <string name="txtCountryNameTitleDetails">Country:</string>
+    <string name="btnNormal"> Normal2</string>
+    <string name="txtViewSatellit">Satellit</string>
+    <string name="txtViewNormal">Normal</string>
+    <string name="txtViewTerrain">Terrain</string>
+    <string name="btnSatellit2">Satellit2</string>
+    <string name="btnTerrain2">Terrain3</string>
 </resources>
