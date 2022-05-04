@@ -2,16 +2,12 @@ package dk.au.mad22spring.group19.appproject_travlers;
 
 public class TripModel {
 
-    //Widgets:
     public String cityName, countryName, travelPlanNotes, travelJournalNotes;
     public boolean userVisitedCity;
     public double lon, lat;
     public float travelUserRating;
 
-    //Primary key for database
-    private int id;
-
-    //Empty constructor
+    //Default constructor - required for calls to DataSnapshot.getValue(TripModel.Class)
     public TripModel(){}
 
     //Constructor
@@ -25,6 +21,8 @@ public class TripModel {
         this.lon = lon;
         this.lat = lat;
     }
+
+    //Getters and Setters
 
     public String getCityName() {
         return cityName;
@@ -58,28 +56,12 @@ public class TripModel {
         this.travelJournalNotes = travelJournalNotes;
     }
 
-    public float getTravelUserRating() {
-        return travelUserRating;
-    }
-
-    public void setTravelUserRating(float travelUserRating) {
-        this.travelUserRating = travelUserRating;
-    }
-
-    public boolean hasUserVisitedCity() {
+    public boolean isUserVisitedCity() {
         return userVisitedCity;
     }
 
     public void setUserVisitedCity(boolean userVisitedCity) {
         this.userVisitedCity = userVisitedCity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public double getLon() {
@@ -96,5 +78,13 @@ public class TripModel {
 
     public void setLat(double lat) {
         this.lat = lat;
+    }
+
+    public float getTravelUserRating() {
+        return travelUserRating;
+    }
+
+    public void setTravelUserRating(float travelUserRating) {
+        this.travelUserRating = travelUserRating;
     }
 }

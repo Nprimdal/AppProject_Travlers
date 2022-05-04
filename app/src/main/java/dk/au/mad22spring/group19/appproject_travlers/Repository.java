@@ -40,7 +40,7 @@ public class Repository {
         cityAPI = new CityAPI(this, context);
         executor = Executors.newSingleThreadExecutor();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseReference = firebaseDatabase.getReference("message");
+        firebaseReference = firebaseDatabase.getReference("cities");
 
         //Retrieves trips from database
         //trips = tripDatabase.tripDAO().getAll();
@@ -99,7 +99,7 @@ public class Repository {
             @Override
             public void run() {
                 String key = firebaseReference.push().getKey();
-                firebaseReference.child("Cities").child(key).setValue(city);
+                firebaseReference.child(key).setValue(city);
             }
         });
     }

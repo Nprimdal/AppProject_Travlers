@@ -103,7 +103,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         rtnUserRating.setRating(trip.getTravelUserRating());
         edtTravelPlan.setText(trip.getTravelPlanNotes());
         edtTravelJournal.setText(trip.getTravelJournalNotes());
-        checkBoxCityVisited.setChecked(trip.hasUserVisitedCity());
+        checkBoxCityVisited.setChecked(trip.isUserVisitedCity());
 
        if (checkBoxCityVisited.isChecked()){
             imgFlight.setVisibility(View.GONE);
