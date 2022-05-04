@@ -42,4 +42,16 @@
     <string name="txtViewTerrain">Terrain</string>
     <string name="btnSatellit2">Satellit2</string>
     <string name="btnTerrain2">Terrain3</string>
+    <string name="txtWelcome">Welcome</string>
+    <string name="txtSignInToCont">Sign in to continue</string>
+    <string name="hintEmail">Email</string>
+    <string name="txtHintPassword">Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="txtNoAccount">Don\'t have an account?</string>
+    <string name="txtCreateAccount">Create account</string>
+    <string name="txtCreateNewHeader">Create account</string>
+    <string name="txtCreateNewSubHeader">Create a new account</string>
+    <string name="edtHintName">Name</string>
+    <string name="edtHintConfirmPass">Confirm Password</string>
+    <string name="btnCreateNewAccount">Create account</string>
 </resources>
