@@ -2,7 +2,7 @@ package dk.au.mad22spring.group19.appproject_travlers;
 
 public class TripModel {
 
-    public String cityName, countryName, travelPlanNotes, travelJournalNotes;
+    public String cityName, countryName, travelPlanNotes, travelJournalNotes, key;
     public boolean userVisitedCity;
     public double lon, lat;
     public float travelUserRating;
@@ -11,7 +11,7 @@ public class TripModel {
     public TripModel(){}
 
     //Constructor
-    public TripModel(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, boolean userVisitedCity, double lon, double lat){
+    public TripModel(String key, String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, boolean userVisitedCity, double lon, double lat){
         this.cityName = cityName;
         this.countryName = countryName;
         this.travelPlanNotes = travelPlanNotes;
@@ -20,9 +20,18 @@ public class TripModel {
         this.userVisitedCity = userVisitedCity;
         this.lon = lon;
         this.lat = lat;
+        this.key = key;
     }
 
     //Getters and Setters
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getCityName() {
         return cityName;

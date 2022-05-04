@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,6 +79,7 @@ public class SearchFragment extends Fragment  implements CityListAdapter.ICityCl
     //Adds city to database
     @Override
     public void onCityClicked(int position) {
+
       /*  tripViewModel.getNumberOfCity(trips.get(position)).observe(this, integer -> {
             if (integer > 0){
 
@@ -91,7 +91,8 @@ public class SearchFragment extends Fragment  implements CityListAdapter.ICityCl
             }
         });*/
 
-        tripViewModel.addCityFirebase(trips.get(position));
+        tripViewModel.addCityDB(trips.get(position));
+        Toast.makeText(getContext(), "City was successfully added to your travel overview", Toast.LENGTH_SHORT).show();
 
     }
 }

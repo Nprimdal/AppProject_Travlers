@@ -21,29 +21,25 @@ import java.util.concurrent.Executors;
 public class Repository {
 
     //References:
-    //private TripDatabase tripDatabase;
     private CityAPI cityAPI;
-    private MutableLiveData<List<TripModel>> tripsFirebase = new MutableLiveData<>();
-    private LiveData<List<TripModel>> trips;
+    private MutableLiveData<List<TripModel>> trips;
     private ArrayList<TripModel> tripsModels;
-    private static MutableLiveData<TripModel> currentSelection = new MutableLiveData<>();
+    private static MutableLiveData<TripModel> currentSelection;
     private static Repository repository; //Part of singleton pattern
     private ExecutorService executor; //Part of background processing
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference firebaseReference;
+    private FirebaseDatabase db;
+    private DatabaseReference dbRef;
 
     //Constructor
     private Repository(Context context){
 
         //Connections:
-        //tripDatabase = TripDatabase.getDatabase(context);
         cityAPI = new CityAPI(this, context);
         executor = Executors.newSingleThreadExecutor();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseReference = firebaseDatabase.getReference("cities");
-
-        //Retrieves trips from database
-        //trips = tripDatabase.tripDAO().getAll();
+        db = FirebaseDatabase.getInstance();
+        dbRef = db.getReference("cities");
+        trips = new MutableLiveData<>();
+        tripsModels = new ArrayList<>();
 
     }
 
@@ -51,7 +47,6 @@ public class Repository {
         if (repository==null){
             repository = new Repository(TripApplication.getAppContext());
         }
-
         return repository;
     }
 
@@ -68,80 +63,22 @@ public class Repository {
         currentSelection.postValue(tripModel);
     }
 
-    //Get cities by name from API
+    //API: Get cities by name
     public LiveData<ArrayList<TripModel>> getCities(String cityName){
         return cityAPI.getCitiesByName(cityName);
     }
 
-    /*//Checks how many cities with a specific name exists in db
-    public LiveData<Integer> getNumberOfSpecificCity(TripModel city){
-        MutableLiveData<Integer> data = new MutableLiveData();
-        executor.execute(() -> {int count = tripDatabase.tripDAO().findNumberOfCities(city.cityName);
-            data.postValue(count);
-        });
+   //DB: Get all trips
+    public LiveData<List<TripModel>> getTripsDB(){
 
-        return data;
-    }*/
-
-    //Add a trip to database
-    /*public void addCityAsynch(TripModel city){
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                tripDatabase.tripDAO().addTrip(city);
-            }
-        });
-    }*/
-
-    //Add a trip to database firebase
-    public void addCityFirebase(TripModel city){
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                String key = firebaseReference.push().getKey();
-                firebaseReference.child(key).setValue(city);
-            }
-        });
-    }
-
-    public void updateTripFirebase(TripModel city){
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-    }
-
-    //Update trip in database
-    /*public void updateTripAsynch(TripModel trip){
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                tripDatabase.tripDAO().updateTrip(trip);
-            }
-        });
-    }*/
-
-    //Get trips from database
-    public LiveData<List<TripModel>> getAllTrips(){
-
-        return trips;
-    }
-
-   //Get trips from database
-    public LiveData<List<TripModel>> getAllTripsFirebase(){
-
-        firebaseReference.addValueEventListener(new ValueEventListener() {
+        dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tripsModels = new ArrayList<>();
-
                 Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
                 while (snapshots.iterator().hasNext()){
                     tripsModels.add(snapshots.iterator().next().getValue(TripModel.class));
                 }
-                tripsFirebase.postValue(tripsModels);
+                trips.postValue(tripsModels);
             }
 
             @Override
@@ -150,7 +87,37 @@ public class Repository {
             }
         });
 
-        return tripsFirebase;
+        return trips;
     }
 
+    //DB: Add a trip
+    public void addCity(TripModel city){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                city.key = dbRef.push().getKey();
+                dbRef.child(city.key).setValue(city);
+            }
+        });
+    }
+
+    //DB: Update specific trip
+    public void updateTrip(TripModel city){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                dbRef.child(city.key).setValue(city);
+            }
+        });
+    }
+
+    //DB: Delete specific trip
+    public void deleteTrip(TripModel city){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                dbRef.child(city.key).removeValue();
+            }
+        });
+    }
 }

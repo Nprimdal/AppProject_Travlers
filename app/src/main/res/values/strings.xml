@@ -54,4 +54,5 @@
     <string name="edtHintName">Name</string>
     <string name="edtHintConfirmPass">Confirm Password</string>
     <string name="btnCreateNewAccount">Create account</string>
+    <string name="btnDeleteDetails">Delete</string>
 </resources>

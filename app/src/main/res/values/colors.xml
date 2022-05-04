@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--color references: https://www.schemecolor.com/pastel-green-beige.php-->
 <resources>
-    <color name="light_french_beige">#CAAD7E</color>
-    <color name="dirty_green_white">#ECEBC9</color>
-    <color name="light_green">#9ccc65</color>
-    <color name="tea_green">#D5E7B8</color>
-    <color name="light_moss_green">#C4DEA4</color>
-    <color name="granny_with_apple">#A7d489</color>
+    <color name="green_700">#689F38</color>
+    <color name="green_500">#8BC34A</color>
+    <color name="green_200">#558B2F</color>
+    <color name="yellow_400">#FFECB3</color>
+    <color name="yellow_A200">#FFD740</color>
+    <color name="yellow_700">#FFA000</color>
+    <color name="yellow_A700">#FFAB00</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Grey">#BEBDB8</color>
     <color name="Orange">#FFBF2E</color>
-    <color name="light_beige">#F2E9DF</color>
-
+    <color name="light_beige_white">#E7E6E2</color>
+    <color name="light_beige">#EAE3C9</color>
 
 </resources>

@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -56,7 +55,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, TripLis
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
 
 
-        tripViewModel.getTrips().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
+        tripViewModel.getTripsDB().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
             @Override
             public void onChanged(List<TripModel> tripModels) {
                 trips = tripModels;

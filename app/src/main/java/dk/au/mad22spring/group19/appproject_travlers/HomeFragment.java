@@ -1,20 +1,17 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.List;
@@ -41,22 +38,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
 
         //Set up view model
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
-
-       /* //Retrieves trips and updates adapter
-        tripViewModel.getTrips().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
-            @Override
-            public void onChanged(List<TripModel> tripModels) {
-                trips = tripModels;
-                tripAdapter.updateCityModel(trips);
-
-                if(trips.size() == 0){
-                    rcv.setVisibility(View.GONE);
-                    layoutAddCity.setVisibility(View.VISIBLE);
-                }
-            }
-        });*/
-
-       tripViewModel.getTripsFirebase().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
+        tripViewModel.getTripsDB().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
             @Override
             public void onChanged(List<TripModel> tripModels) {
                 trips = tripModels;
@@ -92,8 +74,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
 
     @Override
     public void onCityClicked(int position) {
-        //cityDetailsFragment(tripViewModel.getTrips().getValue().get(position));
-        cityDetailsFragment(tripViewModel.getTripsFirebase().getValue().get(position));
+        cityDetailsFragment(tripViewModel.getTripsDB().getValue().get(position));
     }
     private void cityDetailsFragment(TripModel tripModel) {
         tripViewModel.updateCurrentSelection(tripModel);

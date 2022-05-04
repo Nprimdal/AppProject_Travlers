@@ -55,8 +55,6 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                 holder.imgCheckMark.setVisibility(View.GONE);
             }
         }
-
-
     }
 
     //The number of items we want to display in recyclerView

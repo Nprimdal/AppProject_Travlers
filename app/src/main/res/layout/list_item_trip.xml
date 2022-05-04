@@ -55,8 +55,8 @@
 
         <ImageView
             android:id="@+id/imgFlight"
-            android:layout_width="17dp"
-            android:layout_height="14dp"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/rtnStarsOverview"
@@ -70,13 +70,11 @@
 
         <ImageView
             android:id="@+id/imgCheckMark"
-            android:layout_width="17dp"
-            android:layout_height="14dp"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/rtnStarsOverview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/rtnStarsOverview"
             app:layout_constraintTop_toTopOf="@+id/rtnStarsOverview"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_check_circle_24" />

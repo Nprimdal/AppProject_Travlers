@@ -1,8 +1,10 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,14 +21,14 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+//References
+//AlertDialog implementation: https://stackoverflow.com/questions/42983407/making-a-confirmation-dialog-box-for-deletion
+
 
 public class TripDetailsFragment extends Fragment implements OnMapReadyCallback {
 
@@ -55,18 +57,16 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
                     @Override
                     public void onChanged(TripModel tripModel) {
                         trip = tripModel;
-                        
                         updateTripDetailsUI();
                     }
         });
 
-        //Get views
+        //Set up views
         txtCityName = (TextView) view.findViewById(R.id.txtCityNameDetails);
         txtCountryName = (TextView) view.findViewById(R.id.txtCountryNameDetails);
         rtnUserRating = (RatingBar) view.findViewById(R.id.rtnUserRatingDetails);
         edtTravelPlan = (EditText) view.findViewById(R.id.txtTravelPlan);
         edtTravelJournal = (EditText) view.findViewById(R.id.txtTravelJournal);
-        checkBoxCityVisited = (CheckBox) view.findViewById(R.id.checkBoxVisited);
         imgCheckMarK = (ImageView) view.findViewById(R.id.imgCheckMarkDetails);
         imgFlight = (ImageView) view.findViewById(R.id.imgFlightDetails);
 
@@ -87,8 +87,24 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         });
 
         //Set up delete button
+        btnDelete = (Button) view.findViewById(R.id.btnDeleteDetails);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { deleteTrip(trip); }
+        });
+
+        //Set up checkbox
+        checkBoxCityVisited = (CheckBox) view.findViewById(R.id.checkBoxVisited);
+        checkBoxCityVisited.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgFlight.setVisibility(View.GONE);
+                imgCheckMarK.setVisibility(View.VISIBLE);
+            }
+        });
 
 
+        //Set up map
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentMap);
         mapFragment.getMapAsync(this);
 
@@ -96,7 +112,6 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
     }
 
     private void updateTripDetailsUI() {
-
         //Set trip data
         txtCityName.setText(trip.getCityName());
         txtCountryName.setText(trip.getCountryName());
@@ -119,21 +134,38 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         trip.setTravelPlanNotes(edtTravelPlan.getText().toString());
         trip.setTravelJournalNotes(edtTravelJournal.getText().toString());
         trip.setUserVisitedCity(checkBoxCityVisited.isChecked());
-        //tripViewModel.updateTrip(trip);
-        tripViewModel.updatTripFirebase(trip);
+        tripViewModel.updateTripDB(trip);
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
-
     }
 
-    private void deleteTrip(){
+    private void deleteTrip(@NonNull TripModel trip){
 
+        //Builds and shows Dialog to make user confirm delete
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Are you sure you want to delete " + trip.cityName + " from your library?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //If 'Yes': City is deleted and application returns to HomeFragment
+                        tripViewModel.deleteTripDB(trip);
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    //If 'No': Dialog is closed
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
     }
 
     private void back(){
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
     }
 
+    //Set city map marker
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
 
@@ -144,9 +176,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
                 .title(trip.getCityName())
                 .snippet(trip.getCountryName()));
 
-        //use bounding box to zoom properly
         LatLng latLng = new LatLng(trip.lat, trip.lon);
-
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 }
