@@ -3,8 +3,15 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,23 +21,29 @@ import java.util.concurrent.Executors;
 public class Repository {
 
     //References:
-    private TripDatabase tripDatabase;
+    //private TripDatabase tripDatabase;
     private CityAPI cityAPI;
+    private MutableLiveData<List<TripModel>> tripsFirebase = new MutableLiveData<>();
     private LiveData<List<TripModel>> trips;
+    private ArrayList<TripModel> tripsModels;
     private static MutableLiveData<TripModel> currentSelection = new MutableLiveData<>();
     private static Repository repository; //Part of singleton pattern
     private ExecutorService executor; //Part of background processing
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference firebaseReference;
 
     //Constructor
     private Repository(Context context){
 
         //Connections:
-        tripDatabase = TripDatabase.getDatabase(context);
+        //tripDatabase = TripDatabase.getDatabase(context);
         cityAPI = new CityAPI(this, context);
         executor = Executors.newSingleThreadExecutor();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseReference = firebaseDatabase.getReference("message");
 
         //Retrieves trips from database
-        trips = tripDatabase.tripDAO().getAll();
+        //trips = tripDatabase.tripDAO().getAll();
 
     }
 
@@ -60,7 +73,7 @@ public class Repository {
         return cityAPI.getCitiesByName(cityName);
     }
 
-    //Checks how many cities with a specific name exists in db
+    /*//Checks how many cities with a specific name exists in db
     public LiveData<Integer> getNumberOfSpecificCity(TripModel city){
         MutableLiveData<Integer> data = new MutableLiveData();
         executor.execute(() -> {int count = tripDatabase.tripDAO().findNumberOfCities(city.cityName);
@@ -68,32 +81,76 @@ public class Repository {
         });
 
         return data;
-    }
+    }*/
 
     //Add a trip to database
-    public void addCityAsynch(TripModel city){
+    /*public void addCityAsynch(TripModel city){
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 tripDatabase.tripDAO().addTrip(city);
             }
         });
+    }*/
+
+    //Add a trip to database firebase
+    public void addCityFirebase(TripModel city){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                String key = firebaseReference.push().getKey();
+                firebaseReference.child("Cities").child(key).setValue(city);
+            }
+        });
+    }
+
+    public void updateTripFirebase(TripModel city){
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 
     //Update trip in database
-    public void updateTripAsynch(TripModel trip){
+    /*public void updateTripAsynch(TripModel trip){
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 tripDatabase.tripDAO().updateTrip(trip);
             }
         });
-    }
+    }*/
 
     //Get trips from database
     public LiveData<List<TripModel>> getAllTrips(){
 
         return trips;
+    }
+
+   //Get trips from database
+    public LiveData<List<TripModel>> getAllTripsFirebase(){
+
+        firebaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tripsModels = new ArrayList<>();
+
+                Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
+                while (snapshots.iterator().hasNext()){
+                    tripsModels.add(snapshots.iterator().next().getValue(TripModel.class));
+                }
+                tripsFirebase.postValue(tripsModels);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return tripsFirebase;
     }
 
 }

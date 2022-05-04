@@ -1,3 +1,4 @@
+/*
 package dk.au.mad22spring.group19.appproject_travlers;
 
 import androidx.lifecycle.LiveData;
@@ -24,3 +25,4 @@ public interface TripDAO {
     @Update
     void updateTrip(TripModel tripModel);
 }
+*/

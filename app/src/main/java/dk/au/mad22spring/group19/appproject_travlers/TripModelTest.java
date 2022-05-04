@@ -1,6 +1,11 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
-public class TripModel {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
+public class TripModelTest {
 
     //Widgets:
     public String cityName, countryName, travelPlanNotes, travelJournalNotes;
@@ -12,10 +17,10 @@ public class TripModel {
     private int id;
 
     //Empty constructor
-    public TripModel(){}
+    public TripModelTest(){}
 
     //Constructor
-    public TripModel(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, boolean userVisitedCity, double lon, double lat){
+    public TripModelTest(String cityName, String countryName, String travelPlanNotes, String travelJournalNotes, float travelUserRating, boolean userVisitedCity, double lon, double lat){
         this.cityName = cityName;
         this.countryName = countryName;
         this.travelPlanNotes = travelPlanNotes;

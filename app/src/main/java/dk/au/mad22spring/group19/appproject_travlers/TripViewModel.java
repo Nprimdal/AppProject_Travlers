@@ -38,14 +38,23 @@ public class TripViewModel extends ViewModel {
         return repository.getAllTrips();
     }
 
-    public LiveData<Integer> getNumberOfCity(TripModel city) {
+    /*public LiveData<Integer> getNumberOfCity(TripModel city) {
         return repository.getNumberOfSpecificCity(city);
+    }*/
+
+
+    //public void addCity(TripModel city){ repository.addCityAsynch(city); }
+
+    //public void updateTrip(TripModel trip){repository.updateTripAsynch(trip);}
+
+    public void addCityFirebase(TripModel city){ repository.addCityFirebase(city); }
+
+    public void updatTripFirebase(TripModel city){ repository.updateTripFirebase(city); }
+
+
+    public LiveData<List<TripModel>> getTripsFirebase() {
+
+        return repository.getAllTripsFirebase();
     }
-
-
-    public void addCity(TripModel city){ repository.addCityAsynch(city); }
-
-    public void updateTrip(TripModel trip){repository.updateTripAsynch(trip);}
-
 
 }

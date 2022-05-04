@@ -25,6 +25,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class TripDetailsFragment extends Fragment implements OnMapReadyCallback {
 
@@ -90,7 +92,6 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentMap);
         mapFragment.getMapAsync(this);
 
-
         return view;
     }
 
@@ -104,7 +105,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         edtTravelJournal.setText(trip.getTravelJournalNotes());
         checkBoxCityVisited.setChecked(trip.hasUserVisitedCity());
 
-        if (checkBoxCityVisited.isChecked()){
+       if (checkBoxCityVisited.isChecked()){
             imgFlight.setVisibility(View.GONE);
         }
         else{
@@ -118,7 +119,8 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         trip.setTravelPlanNotes(edtTravelPlan.getText().toString());
         trip.setTravelJournalNotes(edtTravelJournal.getText().toString());
         trip.setUserVisitedCity(checkBoxCityVisited.isChecked());
-        tripViewModel.updateTrip(trip);
+        //tripViewModel.updateTrip(trip);
+        tripViewModel.updatTripFirebase(trip);
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
 

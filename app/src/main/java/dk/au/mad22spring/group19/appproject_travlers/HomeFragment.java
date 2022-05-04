@@ -42,8 +42,21 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         //Set up view model
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
 
-        //Retrieves trips and updates adapter
+       /* //Retrieves trips and updates adapter
         tripViewModel.getTrips().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
+            @Override
+            public void onChanged(List<TripModel> tripModels) {
+                trips = tripModels;
+                tripAdapter.updateCityModel(trips);
+
+                if(trips.size() == 0){
+                    rcv.setVisibility(View.GONE);
+                    layoutAddCity.setVisibility(View.VISIBLE);
+                }
+            }
+        });*/
+
+       tripViewModel.getTripsFirebase().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
             @Override
             public void onChanged(List<TripModel> tripModels) {
                 trips = tripModels;
@@ -79,7 +92,8 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
 
     @Override
     public void onCityClicked(int position) {
-        cityDetailsFragment(tripViewModel.getTrips().getValue().get(position));
+        //cityDetailsFragment(tripViewModel.getTrips().getValue().get(position));
+        cityDetailsFragment(tripViewModel.getTripsFirebase().getValue().get(position));
     }
     private void cityDetailsFragment(TripModel tripModel) {
         tripViewModel.updateCurrentSelection(tripModel);
