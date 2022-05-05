@@ -1,12 +1,17 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +25,9 @@ import java.util.concurrent.Executors;
 
 public class Repository {
 
+    //Constants
+    public static final String TAG = "AUTH";
+
     //References:
     private CityAPI cityAPI;
     private MutableLiveData<List<TripModel>> trips;
@@ -29,6 +37,8 @@ public class Repository {
     private ExecutorService executor; //Part of background processing
     private FirebaseDatabase db;
     private DatabaseReference dbRef;
+    private DatabaseReference dbRefUser;
+    private FirebaseAuth mAuth;
 
     //Constructor
     private Repository(Context context){
@@ -38,8 +48,10 @@ public class Repository {
         executor = Executors.newSingleThreadExecutor();
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference("cities");
+        dbRefUser = db.getReference("user");
         trips = new MutableLiveData<>();
         tripsModels = new ArrayList<>();
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -117,6 +129,20 @@ public class Repository {
             @Override
             public void run() {
                 dbRef.child(city.key).removeValue();
+            }
+        });
+    }
+
+    public void updatePassword(String newPassword){
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "User password updated.");
+                    dbRefUser.child(mAuth.getCurrentUser().getUid()).child("password").setValue(newPassword);
+                }
             }
         });
     }

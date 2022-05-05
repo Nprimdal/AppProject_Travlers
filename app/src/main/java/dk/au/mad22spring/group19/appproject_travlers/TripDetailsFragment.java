@@ -103,8 +103,14 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         checkBoxCityVisited.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgFlight.setVisibility(View.GONE);
-                imgCheckMarK.setVisibility(View.VISIBLE);
+                if (checkBoxCityVisited.isChecked()){
+                    imgFlight.setVisibility(View.GONE);
+                    imgCheckMarK.setVisibility(View.VISIBLE);
+                }
+                else {
+                    imgFlight.setVisibility(View.VISIBLE);
+                    imgCheckMarK.setVisibility(View.GONE);
+                }
             }
         });
 
