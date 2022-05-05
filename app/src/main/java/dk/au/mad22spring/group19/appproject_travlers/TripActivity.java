@@ -14,11 +14,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class TripActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
+    Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
+
+        repository = Repository.getInstance();
+        repository.getUser();
 
          bottomNavigationView = findViewById(R.id.bottomNavigationView);
          bottomNavigationView.setOnNavigationItemSelectedListener(this);

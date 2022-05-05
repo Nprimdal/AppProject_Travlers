@@ -1,5 +1,6 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -41,6 +44,10 @@ public class Repository {
     private DatabaseReference dbRef;
     private DatabaseReference dbRefUser;
     private FirebaseAuth mAuth;
+    private static MutableLiveData<Boolean> userLoggedIn;
+    private static MutableLiveData<Boolean> userCreated;
+    private static MutableLiveData<List<TripModel>> tripsDb;
+
 
     //Constructor
     public Repository(Context context){
@@ -50,11 +57,13 @@ public class Repository {
         executor = Executors.newSingleThreadExecutor();
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference("cities");
-        modelTrips = this.getTripsDB();
         dbRefUser = db.getReference("user");
         trips = new MutableLiveData<>();
         tripsModels = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
+        userLoggedIn = new MutableLiveData<>();
+        userCreated = new MutableLiveData<>();
+        tripsDb = new MutableLiveData<>();
 
     }
 
@@ -86,10 +95,12 @@ public class Repository {
    //DB: Get all trips
     public LiveData<List<TripModel>> getTripsDB(){
 
+        DatabaseReference getCities = dbRefUser.child(mAuth.getUid()).child("cities");
 
-        dbRef.addValueEventListener(new ValueEventListener() {
+        getCities.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tripsModels.clear();
                 Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
                 while (snapshots.iterator().hasNext()){
                     tripsModels.add(snapshots.iterator().next().getValue(TripModel.class));
@@ -99,10 +110,8 @@ public class Repository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-
         return trips;
     }
 
@@ -113,8 +122,9 @@ public class Repository {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                city.key = dbRef.push().getKey();
-                dbRef.child(city.key).setValue(city);
+                city.key = dbRefUser.push().getKey();
+                DatabaseReference cities = dbRefUser.child(mAuth.getUid()).child("cities").child(city.key);
+                cities.setValue(city);
             }
         });
     }
@@ -124,7 +134,8 @@ public class Repository {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                dbRef.child(city.key).setValue(city);
+                DatabaseReference cities = dbRefUser.child(mAuth.getUid()).child("cities").child(city.key);
+                cities.setValue(city);
             }
         });
     }
@@ -134,7 +145,8 @@ public class Repository {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                dbRef.child(city.key).removeValue();
+                DatabaseReference cityToBeDeleted = dbRefUser.child(mAuth.getUid()).child("cities").child(city.key);
+                cityToBeDeleted.removeValue();
             }
         });
     }
@@ -149,7 +161,6 @@ public class Repository {
             if(tripModel.lat == trip.lat && tripModel.lon == trip.lon)
             {
                 citiesSameLocation.add(1);
-
             }
 
         }
@@ -164,11 +175,76 @@ public class Repository {
 
 
     public TripModel randomTrips(){
-        Random value = new Random();
-        int randomTrip = value.nextInt(modelTrips.getValue().size());
-        return modelTrips.getValue().get(randomTrip);
+        if (mAuth != null){
+            modelTrips = this.getTripsDB();
+            Random value = new Random();
+            int randomTrip = value.nextInt(modelTrips.getValue().size());
+            return modelTrips.getValue().get(randomTrip);
+        }
+        return  null;
+
 
     }
+
+   //DB: Login
+    public static MutableLiveData<Boolean> didUserLoggedIn(){return userLoggedIn;}
+    public void Login(String email, String password, Activity activity){
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Login successful");
+                    userLoggedIn.postValue(true);
+                } else {
+                    Log.d(TAG, "Login failed: ", task.getException());
+                    userLoggedIn.postValue(false);
+                }
+            }
+        });
+    }
+
+    //DB: create account
+    public static MutableLiveData<Boolean> didUserGetCreated(){return userCreated;}
+    public void createUser(User user, String password, Activity activity){
+
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), password)       //call to create a new user and set callbacks
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Account created");
+                            userCreated.postValue(true);
+                            //String keyId = dbRefUser.push().getKey();
+                            dbRefUser.child(mAuth.getUid()).setValue(user);
+
+                        } else {
+                            Log.d(TAG, "Could not create account", task.getException());
+                            userCreated.postValue(false);
+                        }
+                    }
+                });
+    }
+
+    public void getUser(){
+        String id = mAuth.getCurrentUser().getUid();
+        DatabaseReference fullName = dbRefUser.child(id).child("fullName");
+
+        fullName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fullName = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
 
     //DB: Update password
     public void updatePassword(String newPassword){
