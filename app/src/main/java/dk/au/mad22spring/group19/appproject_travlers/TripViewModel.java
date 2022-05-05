@@ -40,6 +40,7 @@ public class TripViewModel extends ViewModel {
     public void updateTripDB(TripModel trip){ repository.updateTrip(trip); }
     public void deleteTripDB(TripModel trip) {repository.deleteTrip(trip);}
     public void updatePasswordDB(String newPassword){repository.updatePassword(newPassword);}
+    public void logout() {repository.logout();}
 
 
 

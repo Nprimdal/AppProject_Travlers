@@ -22,7 +22,6 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_trip);
 
         repository = Repository.getInstance();
-        repository.getUser();
 
          bottomNavigationView = findViewById(R.id.bottomNavigationView);
          bottomNavigationView.setOnNavigationItemSelectedListener(this);

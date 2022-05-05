@@ -227,25 +227,6 @@ public class Repository {
                 });
     }
 
-    public void getUser(){
-        String id = mAuth.getCurrentUser().getUid();
-        DatabaseReference fullName = dbRefUser.child(id).child("fullName");
-
-        fullName.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fullName = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-
     //DB: Update password
     public void updatePassword(String newPassword){
         FirebaseUser user = mAuth.getCurrentUser();
@@ -258,5 +239,10 @@ public class Repository {
                 }
             }
         });
+    }
+
+    //DB: Logout
+    public void logout(){
+        mAuth.signOut();
     }
 }
