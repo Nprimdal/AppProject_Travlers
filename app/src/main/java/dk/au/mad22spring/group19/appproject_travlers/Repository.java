@@ -86,6 +86,7 @@ public class Repository {
    //DB: Get all trips
     public LiveData<List<TripModel>> getTripsDB(){
 
+
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
