@@ -3,6 +3,7 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,10 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
          if (savedInstanceState == null){
              bottomNavigationView.setSelectedItemId(R.id.home);
          }
+
+        //Set up the service and its intent
+        Intent serviceIntent = new Intent(this, Services.class);
+        startService(serviceIntent);
     }
 
     @Override

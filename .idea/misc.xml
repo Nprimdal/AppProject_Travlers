@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_map.xml" value="0.1" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_trip_details.xml" value="0.11574074074074074" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/list_item_city.xml" value="0.11574074074074074" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/map_type_dialog.xml" value="0.5" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_trip.xml" value="0.10989583333333333" />

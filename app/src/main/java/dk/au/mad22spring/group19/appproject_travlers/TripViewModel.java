@@ -19,6 +19,10 @@ public class TripViewModel extends ViewModel {
         currentSelection = repository.getCurrentSelection();
     }
 
+    public boolean getCityExists(TripModel tripModel){
+        return repository.cityExists(tripModel);
+    }
+
     //Gets selected city/trip
     public LiveData<TripModel> getCurrentSelection() {
         return currentSelection;

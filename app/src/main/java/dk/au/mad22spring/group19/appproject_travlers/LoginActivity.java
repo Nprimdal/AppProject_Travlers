@@ -44,12 +44,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { login(); }
         });
+
         txtCreateAccount = findViewById(R.id.txtCreateAccount);
         txtCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { goToCreateNewAccount(); }
         });
-        
+
     }
 
 
@@ -73,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     });
+
+
     }
 
     private void goToCreateNewAccount() {
