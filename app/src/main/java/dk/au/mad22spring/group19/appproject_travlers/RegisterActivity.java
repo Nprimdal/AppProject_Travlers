@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
                 String fullName = edtFullName.getText().toString();
-                user = new User(email, password, fullName);
+                user = new User(email, fullName);
                 createNewAccount(email, password);
             }
         });
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
         String keyId = mDatabase.push().getKey();
-        mDatabase.child(keyId).setValue(user);
+        mDatabase.child(keyId).child(mAuth.getUid()).setValue(user);
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();
