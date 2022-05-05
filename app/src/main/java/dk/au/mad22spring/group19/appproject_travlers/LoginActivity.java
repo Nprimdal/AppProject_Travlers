@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//Reference: Demo from lecture
+
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "AUTH";
