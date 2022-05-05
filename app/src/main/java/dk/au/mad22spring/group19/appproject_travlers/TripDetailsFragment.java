@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,7 +25,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 //References
 //AlertDialog implementation: https://stackoverflow.com/questions/42983407/making-a-confirmation-dialog-box-for-deletion
@@ -73,7 +71,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         imgFlight = (ImageView) view.findViewById(R.id.imgFlightDetails);
 
         //Set up save button
-        fabSave = (FloatingActionButton) view.findViewById(R.id.fabSaveDetails);
+        fabSave = (FloatingActionButton) view.findViewById(R.id.fabSaveTripDetails);
         fabSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +80,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         });
 
 
+        //Set up back button
         fabBack = (FloatingActionButton) view.findViewById(R.id.fabBackTripDetails);
         fabBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +89,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
             }
         });
 
+        //Set up delete button
         fabDelete = (FloatingActionButton) view.findViewById(R.id.fabDeleteDetails);
         fabDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +131,6 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         else{
             imgCheckMarK.setVisibility(View.GONE);
         }
-
     }
 
     private void saveTripChanges(){
