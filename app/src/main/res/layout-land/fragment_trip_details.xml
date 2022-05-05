@@ -150,6 +150,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtRatingTitle"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+
             <ImageView
                 android:id="@+id/imgFlightDetails"
                 android:layout_width="44dp"
@@ -158,10 +159,11 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/txtCityNameDetails"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/txtCityNameDetails"
                 app:layout_constraintTop_toTopOf="@+id/txtCityNameDetails"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_baseline_flight_24" />
-
 
             <ImageView
                 android:id="@+id/imgCheckMarkDetails"
@@ -171,15 +173,17 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/txtCityNameDetails"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.976"
                 app:layout_constraintStart_toEndOf="@+id/txtCityNameDetails"
                 app:layout_constraintTop_toTopOf="@+id/txtCityNameDetails"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
             <fragment
                 android:id="@+id/fragmentMap"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_width="690dp"
+                android:layout_height="140dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

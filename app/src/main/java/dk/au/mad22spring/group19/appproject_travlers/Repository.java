@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -81,7 +82,7 @@ public class Repository {
     }
 
    //DB: Get all trips
-    public LiveData<List<TripModel>> getTripsDB(){
+    public MutableLiveData<List<TripModel>> getTripsDB(){
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,8 +90,10 @@ public class Repository {
                 Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
                 while (snapshots.iterator().hasNext()){
                     tripsModels.add(snapshots.iterator().next().getValue(TripModel.class));
+
                 }
                 trips.postValue(tripsModels);
+
             }
 
             @Override
@@ -146,4 +149,6 @@ public class Repository {
             }
         });
     }
+
+
 }

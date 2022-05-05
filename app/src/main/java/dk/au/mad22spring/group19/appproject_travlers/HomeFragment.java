@@ -82,9 +82,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        trips = null;
+    public void onDetach() {
+        super.onDetach();
     }
 }

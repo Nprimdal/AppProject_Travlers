@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 //References
 //AlertDialog implementation: https://stackoverflow.com/questions/42983407/making-a-confirmation-dialog-box-for-deletion
@@ -72,6 +76,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
 
         //Set up save button
         fabSave = (FloatingActionButton) view.findViewById(R.id.fabSaveTripDetails);
+        fabSave.setEnabled(false);
         fabSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +108,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         checkBoxCityVisited.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fabSave.setEnabled(true);
                 if (checkBoxCityVisited.isChecked()){
                     imgFlight.setVisibility(View.GONE);
                     imgCheckMarK.setVisibility(View.VISIBLE);
@@ -114,13 +120,16 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
             }
         });
 
-
         //Set up map
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentMap);
         mapFragment.getMapAsync(this);
 
+        //Check if views have changed
+        viewsEdited();
+
         return view;
     }
+
 
     private void updateTripDetailsUI() {
         //Set trip data
@@ -188,5 +197,43 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
 
         LatLng latLng = new LatLng(trip.lat, trip.lon);
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+    }
+
+    private void viewsEdited() {
+        ArrayList<EditText> editTexts = new ArrayList();
+        editTexts.add(edtTravelJournal);
+        editTexts.add(edtTravelPlan);
+
+        for (EditText editText: editTexts){
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if(charSequence.toString().trim().length() == 0){
+                        fabSave.setEnabled(false);
+                    }
+                    else{
+                        fabSave.setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+        }
+
+
+
+        rtnUserRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                fabSave.setEnabled(true);
+            }
+        });
+
     }
 }
