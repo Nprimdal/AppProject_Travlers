@@ -2,6 +2,7 @@ package dk.au.mad22spring.group19.appproject_travlers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,11 +37,14 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String USER = "user";
     private User user;
+    private RegisterViewModel registerVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        registerVM = new ViewModelProvider(this).get(RegisterViewModel.class);
 
         edtFullName = findViewById(R.id.edtCreateNewName);
         edtEmail = findViewById(R.id.edtCreateNewEmail);
@@ -67,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createNewAccount(String email, String password) {
+
 
         mAuth.createUserWithEmailAndPassword(email, password)       //call to create a new user and set callbacks
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

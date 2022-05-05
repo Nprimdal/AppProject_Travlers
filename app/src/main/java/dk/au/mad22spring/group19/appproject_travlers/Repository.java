@@ -1,5 +1,6 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -39,6 +42,9 @@ public class Repository {
     private DatabaseReference dbRef;
     private DatabaseReference dbRefUser;
     private FirebaseAuth mAuth;
+    private static MutableLiveData<Boolean> userLoggedIn;
+    private static MutableLiveData<Boolean> userCreated;
+
 
     //Constructor
     private Repository(Context context){
@@ -52,6 +58,8 @@ public class Repository {
         trips = new MutableLiveData<>();
         tripsModels = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
+        userLoggedIn = new MutableLiveData<>();
+        userCreated = new MutableLiveData<>();
 
     }
 
@@ -132,6 +140,49 @@ public class Repository {
             }
         });
     }
+
+    public static MutableLiveData<Boolean> didUserLoggedIn(){return userLoggedIn;}
+
+    public void Login(String email, String password, Activity activity){
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Login successful");
+                    userLoggedIn.postValue(true);
+                } else {
+                    Log.d(TAG, "Login failed: ", task.getException());
+                    userLoggedIn.postValue(false);
+                }
+            }
+        });
+    }
+
+    public static MutableLiveData<Boolean> didUserGetCreated(){return userCreated;}
+
+    public void createUser(User user, String password, Activity activity){
+
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), password)       //call to create a new user and set callbacks
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Account created");
+                            userCreated.postValue(true);
+                            String keyId = dbRefUser.push().getKey();
+                            dbRefUser.child(keyId).child(mAuth.getUid()).setValue(user);
+
+                        } else {
+                            Log.d(TAG, "Could not create account", task.getException());
+                            userCreated.postValue(false);
+                        }
+                    }
+                });
+    }
+
+
 
     public void updatePassword(String newPassword){
         FirebaseUser user = mAuth.getCurrentUser();
