@@ -21,8 +21,9 @@
             android:id="@+id/txtView_MapType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/txtViewMapType"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
