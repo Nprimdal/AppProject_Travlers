@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,6 +35,7 @@ public class Repository {
     //References:
     private CityAPI cityAPI;
     private MutableLiveData<List<TripModel>> trips;
+    private LiveData<List<TripModel>> modelTrips;
     private ArrayList<TripModel> tripsModels;
     private static MutableLiveData<TripModel> currentSelection;
     private static Repository repository; //Part of singleton pattern
@@ -47,13 +49,14 @@ public class Repository {
 
 
     //Constructor
-    private Repository(Context context){
+    public Repository(Context context){
 
         //Connections:
         cityAPI = new CityAPI(this, context);
         executor = Executors.newSingleThreadExecutor();
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference("cities");
+        modelTrips = this.getTripsDB();
         dbRefUser = db.getReference("user");
         trips = new MutableLiveData<>();
         tripsModels = new ArrayList<>();
@@ -110,6 +113,8 @@ public class Repository {
         return trips;
     }
 
+
+
     //DB: Add a trip
     public void addCity(TripModel city){
         executor.execute(new Runnable() {
@@ -141,6 +146,38 @@ public class Repository {
         });
     }
 
+    public boolean cityExists(TripModel trip){
+
+        ArrayList<Integer> citiesSameLocation = new ArrayList<>();
+        boolean cityExists = false;
+
+        for (TripModel tripModel: tripsModels)
+        {
+            if(tripModel.lat == trip.lat && tripModel.lon == trip.lon)
+            {
+                citiesSameLocation.add(1);
+
+            }
+
+        }
+
+        if(citiesSameLocation.size() > 0)
+        {
+            cityExists = true;
+        }
+
+        return cityExists;
+    }
+
+
+    public TripModel randomTrips(){
+        Random value = new Random();
+        int randomTrip = value.nextInt(modelTrips.getValue().size());
+        return modelTrips.getValue().get(randomTrip);
+
+    }
+
+    //DB: Update password
     public static MutableLiveData<Boolean> didUserLoggedIn(){return userLoggedIn;}
 
     public void Login(String email, String password, Activity activity){
@@ -192,7 +229,6 @@ public class Repository {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "User password updated.");
-                    dbRefUser.child(mAuth.getCurrentUser().getUid()).child("password").setValue(newPassword);
                 }
             }
         });

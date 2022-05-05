@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView txtCreateAccount;
     private LoginViewModel loginVM;
-    
+
     //Firebase
     private FirebaseAuth mAuth;
 
@@ -49,12 +49,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { login(); }
         });
+
         txtCreateAccount = findViewById(R.id.txtCreateAccount);
         txtCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { goToCreateNewAccount(); }
         });
-        
+
     }
 
 

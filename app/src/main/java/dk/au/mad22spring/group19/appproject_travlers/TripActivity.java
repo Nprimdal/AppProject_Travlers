@@ -3,20 +3,11 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 //Reference: https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/
 //Reference: https://www.youtube.com/watch?v=Bb8SgfI4Cm4
@@ -35,6 +26,10 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
          if (savedInstanceState == null){
              bottomNavigationView.setSelectedItemId(R.id.home);
          }
+
+        //Set up the service and its intent
+        Intent serviceIntent = new Intent(this, Services.class);
+        startService(serviceIntent);
     }
 
     @Override
@@ -49,7 +44,7 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
             case R.id.person:
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SettingsFragment()).commit();
                 return true;
             case R.id.search:
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).commit();

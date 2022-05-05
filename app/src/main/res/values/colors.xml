@@ -12,7 +12,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Grey">#BEBDB8</color>
     <color name="Orange">#FFBF2E</color>
-    <color name="light_beige_white">#E7E6E2</color>
-    <color name="light_beige">#EAE3C9</color>
+    <color name="light_beige_white">#FAFDF3</color>
+    <color name="light_beige">#F9F9F3</color>
 
 </resources>

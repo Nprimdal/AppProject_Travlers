@@ -33,25 +33,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/text_view_shape"
                 android:contentDescription="@string/btnSatellit2"
                 android:minHeight="48dp"
-                app:srcCompat="@android:drawable/ic_lock_idle_lock" />
+                app:srcCompat="@mipmap/ic_satellit"
+                tools:srcCompat="@mipmap/ic_satellit" />
 
             <ImageButton
                 android:id="@+id/btnTerrain2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/text_view_shape"
                 android:contentDescription="@string/btnTerrain2"
-                app:srcCompat="@android:drawable/ic_menu_send" />
+                app:srcCompat="@mipmap/ic_terrain"
+                tools:srcCompat="@mipmap/ic_terrain" />
 
             <ImageButton
                 android:id="@+id/btnNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/text_view_shape"
                 android:contentDescription="@string/btnTerrain2"
-                app:srcCompat="@android:drawable/ic_btn_speak_now" />
+                app:srcCompat="@mipmap/ic_normal"
+                tools:srcCompat="@mipmap/ic_normal" />
         </LinearLayout>
 
         <LinearLayout

@@ -2,18 +2,11 @@ package dk.au.mad22spring.group19.appproject_travlers;
 
 public class User {
     private String email;
-    private String password;
     private String FullName;
 
-    public User(String email, String password, String fullName) {
+    public User(String email, String fullName) {
         this.email = email;
-        this.password = password;
         FullName = fullName;
-    }
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
     }
 
     public User() {
@@ -25,14 +18,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFullName() {

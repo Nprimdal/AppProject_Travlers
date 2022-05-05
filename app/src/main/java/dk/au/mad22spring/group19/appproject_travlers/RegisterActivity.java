@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
                 String fullName = edtFullName.getText().toString();
-                user = new User(email, password, fullName);
+                user = new User(email, fullName);
                 createNewAccount(email, password);
             }
         });

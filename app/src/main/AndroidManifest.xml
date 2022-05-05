@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".TripApplication"
@@ -17,7 +18,10 @@
         android:roundIcon="@mipmap/ic_home_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppProject_Travlers">
-
+        <service
+            android:name=".Services"
+            android:enabled="true"
+            android:exported="false" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA3vNvzajyp5nPdeCXuIHqZsWA0d2syejY"/>
@@ -27,15 +31,18 @@
             android:exported="false" />
         <activity
             android:name=".TripActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+
         </activity>
     </application>
 
