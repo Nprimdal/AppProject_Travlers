@@ -25,6 +25,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 //References
 //AlertDialog implementation: https://stackoverflow.com/questions/42983407/making-a-confirmation-dialog-box-for-deletion
@@ -37,10 +39,10 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
     private RatingBar rtnUserRating;
     private EditText edtTravelPlan, edtTravelJournal;
     private TripModel trip;
-    private Button btnSave, btnBack, btnDelete;
     private CheckBox checkBoxCityVisited;
     private ImageView imgFlight, imgCheckMarK;
     private GoogleMap gMap;
+    private FloatingActionButton fabBack, fabDelete, fabSave;
 
     public TripDetailsFragment() {
         // Required empty public constructor
@@ -71,26 +73,29 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         imgFlight = (ImageView) view.findViewById(R.id.imgFlightDetails);
 
         //Set up save button
-        btnSave = (Button) view.findViewById(R.id.btnSaveTrip);
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        fabSave = (FloatingActionButton) view.findViewById(R.id.fabSaveDetails);
+        fabSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveTripChanges();
             }
         });
 
-        //Set up back button
-        btnBack = (Button) view.findViewById(R.id.btnBackTripDetails);
-        btnBack.setOnClickListener(new View.OnClickListener() {
+
+        fabBack = (FloatingActionButton) view.findViewById(R.id.fabBackTripDetails);
+        fabBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { back(); }
+            public void onClick(View view) {
+                back();
+            }
         });
 
-        //Set up delete button
-        btnDelete = (Button) view.findViewById(R.id.btnDeleteDetails);
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        fabDelete = (FloatingActionButton) view.findViewById(R.id.fabDeleteDetails);
+        fabDelete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { deleteTrip(trip); }
+            public void onClick(View view) {
+                deleteTrip(trip);
+            }
         });
 
         //Set up checkbox

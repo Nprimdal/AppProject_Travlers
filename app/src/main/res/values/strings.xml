@@ -4,13 +4,12 @@
     <string name="txtCityName">City #</string>
     <string name="txtCountryName">Country #</string>
     <string name="txtCityNameDetails">City #</string>
-    <string name="txtTravelPlanHint">Your travel plan notes … </string>
-    <string name="txtTravelJournalHint">Your travel notes</string>
+    <string name="txtTravelPlanHint">Your travel plan notes …</string>
+    <string name="txtTravelJournalHint">Your travel notes …</string>
     <string name="txtDetailsTitle">Details</string>
     <string name="txtTravelPlanTitle">Travel plan:</string>
     <string name="txtTravelJournalTitle">Travel journal:</string>
     <string name="txtRatingTitle">Your rating</string>
-    <string name="btnBack">Back</string>
     <string name="checkBoxVisited">I have visited this city</string>
     <string name="btnSaveTrip">Save</string>
     <string name="txtSearchTitle">Discover Cities</string>
@@ -54,5 +53,4 @@
     <string name="edtHintName">Name</string>
     <string name="edtHintConfirmPass">Confirm Password</string>
     <string name="btnCreateNewAccount">Create account</string>
-    <string name="btnDeleteDetails">Delete</string>
 </resources>

@@ -81,7 +81,10 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new TripDetailsFragment()).addToBackStack(null).commit();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-
-
+        trips = null;
+    }
 }
