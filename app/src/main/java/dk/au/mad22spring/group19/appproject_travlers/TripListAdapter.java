@@ -46,14 +46,13 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
         holder.txtCountryName.setText(trips.get(position).getCountryName());
         holder.userRating.setRating(trips.get(position).getTravelUserRating());
 
-        for (TripModel trip:trips) {
-
-            if (trip.userVisitedCity){
-                holder.imgFlight.setVisibility(View.GONE);
-            }
-            else{
-                holder.imgCheckMark.setVisibility(View.GONE);
-            }
+        if (trips.get(position).userVisitedCity){
+            holder.imgFlight.setVisibility(View.GONE);
+            holder.imgCheckMark.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.imgCheckMark.setVisibility(View.GONE);
+            holder.imgFlight.setVisibility(View.VISIBLE);
         }
     }
 

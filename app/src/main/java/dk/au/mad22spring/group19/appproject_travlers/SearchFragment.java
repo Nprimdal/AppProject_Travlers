@@ -80,19 +80,16 @@ public class SearchFragment extends Fragment  implements CityListAdapter.ICityCl
     @Override
     public void onCityClicked(int position) {
 
-      /*  tripViewModel.getNumberOfCity(trips.get(position)).observe(this, integer -> {
-            if (integer > 0){
-
-                Toast.makeText(getContext(), "City already exists in your travel overview.", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                //tripViewModel.addCity(trips.get(position));
-                Toast.makeText(getContext(), "City was successfully added to your travel overview", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        tripViewModel.addCityDB(trips.get(position));
-        Toast.makeText(getContext(), "City was successfully added to your travel overview", Toast.LENGTH_SHORT).show();
+        if(tripViewModel.getCityExists(trips.get(position)))
+        {
+            Toast.makeText(getContext(), "City already exists in your travel overview.", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            tripViewModel.addCityDB(trips.get(position));
+            Toast.makeText(getContext(), "City was successfully added to your travel overview", Toast.LENGTH_SHORT).show();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).addToBackStack(null).commit();
+        }
 
     }
 }

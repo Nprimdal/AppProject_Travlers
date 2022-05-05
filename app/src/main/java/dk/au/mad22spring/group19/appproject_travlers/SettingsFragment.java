@@ -1,5 +1,6 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -60,8 +61,26 @@ public class SettingsFragment extends Fragment {
 
         viewsEdited();
 
+        //Set up logout button
+        btnLogout = view.findViewById(R.id.btnLogOut);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
         return view;
+    }
 
+    private void logout() {
+        tripViewModel.logout();
+        getActivity().finish();
+        gotoLogin();
+    }
+
+    private void gotoLogin() {
+        Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(loginIntent);
     }
 
     private void saveSettings() {

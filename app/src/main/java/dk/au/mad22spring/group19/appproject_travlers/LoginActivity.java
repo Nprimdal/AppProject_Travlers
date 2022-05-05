@@ -2,6 +2,8 @@ package dk.au.mad22spring.group19.appproject_travlers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//Reference: Demo from lecture
+
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "AUTH";
@@ -26,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private TextView txtCreateAccount;
-    
+    private LoginViewModel loginVM;
+
     //Firebase
     private FirebaseAuth mAuth;
 
@@ -34,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loginVM = new ViewModelProvider(this).get(LoginViewModel.class);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -44,12 +51,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { login(); }
         });
+
         txtCreateAccount = findViewById(R.id.txtCreateAccount);
         txtCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { goToCreateNewAccount(); }
         });
-        
+
     }
 
 
@@ -60,20 +68,22 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
         return;
     }
-    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+    loginVM.Login(email, password, this);
+    loginVM.userLoggedIn().observe(this, new Observer<Boolean>() {
         @Override
-        public void onComplete(@NonNull Task<AuthResult> task) {
-            if(task.isSuccessful()){
+        public void onChanged(Boolean aBoolean) {
+            if (aBoolean){
                 Log.d(TAG, "Login successful");
                 goToSecurePart();
             }
-            else{
-                Log.d(TAG, "Login failed: ", task.getException());
+            else {
+                Log.d(TAG, "Login failed: ");
                 Toast.makeText(LoginActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
             }
+
         }
     });
-    }
+}
 
     private void goToCreateNewAccount() {
         Intent i = new Intent(this, RegisterActivity.class);

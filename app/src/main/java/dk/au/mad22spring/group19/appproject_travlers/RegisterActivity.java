@@ -2,6 +2,8 @@ package dk.au.mad22spring.group19.appproject_travlers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,11 +38,14 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String USER = "user";
     private User user;
+    private RegisterViewModel registerVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        registerVM = new ViewModelProvider(this).get(RegisterViewModel.class);
 
         edtFullName = findViewById(R.id.edtCreateNewName);
         edtEmail = findViewById(R.id.edtCreateNewEmail);
@@ -57,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 String fullName = edtFullName.getText().toString();
                 user = new User(email, fullName);
-                createNewAccount(email, password);
+                createNewAccount(password);
             }
         });
 
@@ -66,9 +71,25 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void createNewAccount(String email, String password) {
+    private void createNewAccount(String password) {
 
-        mAuth.createUserWithEmailAndPassword(email, password)       //call to create a new user and set callbacks
+        registerVM.createNewAccount(user, password,this);
+        registerVM.userCreated().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean){
+                    Log.d(TAG, "Account created");
+                    Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
+                    goToLogin();
+                }
+                else {
+                    Log.d(TAG, "Could not create account");
+                    Toast.makeText(RegisterActivity.this, "FAILED to create account", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        /*mAuth.createUserWithEmailAndPassword(email, password)       //call to create a new user and set callbacks
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -84,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "FAILED to create account", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });*/
     }
 
     private void goToLogin() {

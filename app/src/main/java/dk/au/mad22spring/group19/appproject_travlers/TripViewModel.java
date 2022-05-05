@@ -19,6 +19,10 @@ public class TripViewModel extends ViewModel {
         currentSelection = repository.getCurrentSelection();
     }
 
+    public boolean getCityExists(TripModel tripModel){
+        return repository.cityExists(tripModel);
+    }
+
     //Gets selected city/trip
     public LiveData<TripModel> getCurrentSelection() {
         return currentSelection;
@@ -36,6 +40,7 @@ public class TripViewModel extends ViewModel {
     public void updateTripDB(TripModel trip){ repository.updateTrip(trip); }
     public void deleteTripDB(TripModel trip) {repository.deleteTrip(trip);}
     public void updatePasswordDB(String newPassword){repository.updatePassword(newPassword);}
+    public void logout() {repository.logout();}
 
 
 

@@ -3,6 +3,7 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -13,11 +14,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class TripActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
+    Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
+
+        repository = Repository.getInstance();
 
          bottomNavigationView = findViewById(R.id.bottomNavigationView);
          bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -25,6 +29,10 @@ public class TripActivity extends AppCompatActivity implements BottomNavigationV
          if (savedInstanceState == null){
              bottomNavigationView.setSelectedItemId(R.id.home);
          }
+
+        //Set up the service and its intent
+        Intent serviceIntent = new Intent(this, Services.class);
+        startService(serviceIntent);
     }
 
     @Override

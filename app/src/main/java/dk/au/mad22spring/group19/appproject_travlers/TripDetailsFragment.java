@@ -143,7 +143,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
        if (checkBoxCityVisited.isChecked()){
             imgFlight.setVisibility(View.GONE);
         }
-        else{
+       else{
             imgCheckMarK.setVisibility(View.GONE);
         }
     }
