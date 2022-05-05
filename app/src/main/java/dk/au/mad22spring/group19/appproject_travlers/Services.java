@@ -100,16 +100,16 @@ public class Services extends Service {
                 } catch (InterruptedException e){
                     Log.e(TAG,"run: ERROR", e);
                 }
-
-                Notification notification = new NotificationCompat.Builder(getApplicationContext(),SERVICE_CHANNEL)
-                        .setContentTitle("" + "Today's random trip: " + repository.randomTrips().cityName)
-                        .setContentText("Country: " + repository.randomTrips().countryName)
-                        .setSmallIcon(R.drawable.ic_baseline_flight_24)
-                        .build();
-                NotificationManager man = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                man.notify(NOTIFICATION_ID,notification);
-
-
+                TripModel tripModel = repository.randomTrips();
+                if (tripModel!= null){
+                    Notification notification = new NotificationCompat.Builder(getApplicationContext(),SERVICE_CHANNEL)
+                            .setContentTitle("" + "Today's random trip: " + tripModel.cityName)
+                            .setContentText("Country: " + tripModel.countryName)
+                            .setSmallIcon(R.drawable.ic_baseline_flight_24)
+                            .build();
+                    NotificationManager man = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    man.notify(NOTIFICATION_ID,notification);
+                }
 
                 if(started){
                     doRecursiveWork(); //Calls it self to keep the method running

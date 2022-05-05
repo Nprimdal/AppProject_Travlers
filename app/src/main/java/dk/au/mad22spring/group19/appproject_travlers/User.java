@@ -1,12 +1,17 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String email;
     private String FullName;
+    private List<TripModel> trips;
 
     public User(String email, String fullName) {
         this.email = email;
         FullName = fullName;
+        trips = new ArrayList<>();
     }
 
     public User() {
