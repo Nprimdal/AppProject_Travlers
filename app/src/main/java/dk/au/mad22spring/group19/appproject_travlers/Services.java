@@ -54,10 +54,8 @@ public class Services extends Service {
 
         //build the notification
         Notification notification = new NotificationCompat.Builder(this, SERVICE_CHANNEL)
-                .setContentTitle("This is your Foregraound service in the background")
-                .setContentText("Just let it run, it's totally cool")
+                .setContentTitle("Find your next trip in the App")
                 .setSmallIcon(R.drawable.ic_baseline_flight_24)
-                .setTicker("Some more information about your service")
                 .build();
 
         startForeground(NOTIFICATION_ID, notification);
