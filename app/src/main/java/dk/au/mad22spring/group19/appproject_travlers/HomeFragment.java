@@ -1,5 +1,6 @@
 package dk.au.mad22spring.group19.appproject_travlers;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 
@@ -24,6 +27,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
     private List<TripModel> trips;
     private RecyclerView rcv;
     private Button btnAddCity;
+    private ImageView imgFlight, imgCheckMark;
     private LinearLayout layoutAddCity;
 
     public HomeFragment() {
@@ -43,11 +47,6 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
             public void onChanged(List<TripModel> tripModels) {
                 trips = tripModels;
                 tripAdapter.updateCityModel(trips);
-
-                if(trips.size() == 0){
-                    rcv.setVisibility(View.GONE);
-                    layoutAddCity.setVisibility(View.VISIBLE);
-                }
             }
         });
 
@@ -56,6 +55,7 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         rcv = (RecyclerView) view.findViewById(R.id.rcvTrips);
         rcv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rcv.setAdapter(tripAdapter);
+
 
         //Get views
         layoutAddCity = (LinearLayout) view.findViewById(R.id.homeAddCityLayout);

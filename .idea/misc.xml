@@ -3,10 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_home.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_map.xml" value="0.1" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_trip_details.xml" value="0.12" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/list_item_city.xml" value="0.11574074074074074" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/list_item_trip.xml" value="0.3116474291710388" />
+        <entry key="..\:/Users/45284/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/map_type_dialog.xml" value="0.4268867924528302" />
+        <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_login.xml" value="0.11200000000000002" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/activity_trip.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/ic_back_arrow_foreground.xml" value="0.245" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/ic_back_delete_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/ic_baseline_flight_24.xml" value="0.209" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.1675" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/drawable/text_view_shape.xml" value="0.2985" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_search.xml" value="0.5" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_trip_details.xml" value="0.22" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/list_item_trip.xml" value="0.1166464155528554" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/menu/trip_details_top_menu.xml" value="0.2390625" />
+        <entry key="..\:/Users/sivwe/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/mipmap-anydpi-v26/ic_back_arrow.xml" value="0.1085" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragment_trip_details.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/AppProject_Travlers/app/src/main/res/layout/fragtment_settings.xml" value="0.1" />
       </map>
