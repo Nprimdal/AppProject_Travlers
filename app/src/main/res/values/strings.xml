@@ -60,5 +60,4 @@
     <string name="edtPasswordHint">***********</string>
     <string name="txtNewPassword">New Password</string>
     <string name="txtConfirmPasswordTitle">Confrm Password</string>
-    <string name="btnLogOut">Log out</string>
 </resources>

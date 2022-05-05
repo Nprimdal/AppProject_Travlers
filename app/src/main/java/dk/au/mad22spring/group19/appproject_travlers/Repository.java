@@ -133,6 +133,7 @@ public class Repository {
         });
     }
 
+    //DB: Update password
     public void updatePassword(String newPassword){
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -141,7 +142,6 @@ public class Repository {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "User password updated.");
-                    dbRefUser.child(mAuth.getCurrentUser().getUid()).child("password").setValue(newPassword);
                 }
             }
         });

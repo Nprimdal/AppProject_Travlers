@@ -3,26 +3,31 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class SettingsFragment extends Fragment {
 
     private TripViewModel tripViewModel;
     private TripModel trip;
-    private User user;
     private TextView txtUserName, txtUserPassword;
     private Button btnLogout;
+    //FirebaseUser user;
     private FloatingActionButton fabSave;
+    //private FirebaseAuth mAuth;
+    private EditText edtOldPassword, edtNewPassword, edtComfirmPassword;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -33,18 +38,18 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragtment_settings, container, false);
 
+
+        //user = mAuth.getCurrentUser();
+
+
         //Set up view model
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
-        tripViewModel.getCurrentSelection().observe(getViewLifecycleOwner(), new Observer<TripModel>() {
-            @Override
-            public void onChanged(TripModel tripModel) {
-                trip = tripModel;
-                txtUserName.setText(user.getFullName());
-            }
-        });
 
         //Set up views
-        txtUserName = (TextView) view.findViewById(R.id.txtUserName);
+        edtComfirmPassword = (EditText) view.findViewById(R.id.edtConfirmPassword);
+        edtOldPassword = (EditText) view.findViewById(R.id.edtOldPassword);
+        edtNewPassword = (EditText) view.findViewById(R.id.edtNewPassword);
+
 
         //Set up save button
         fabSave = (FloatingActionButton) view.findViewById(R.id.fabSaveSettings);
@@ -60,13 +65,27 @@ public class SettingsFragment extends Fragment {
 
     }
 
-
     private void saveSettings() {
-        trip.setTravelUserRating(rtnUserRating.getRating());
-        trip.setTravelPlanNotes(edtTravelPlan.getText().toString());
-        trip.setTravelJournalNotes(edtTravelJournal.getText().toString());
-        trip.setUserVisitedCity(checkBoxCityVisited.isChecked());
-        tripViewModel.updateTripDB(trip);
-    }
 
+        String newPassword = edtNewPassword.getText().toString();
+        String confirmPassword = edtComfirmPassword.getText().toString();
+
+        if(!edtOldPassword.getText().toString().isEmpty() && !edtNewPassword.getText().toString().isEmpty() && !edtComfirmPassword.getText().toString().isEmpty()){
+            //if(edtOldPassword.getText().toString() == user.){
+                if(newPassword.equals(confirmPassword)){
+                    tripViewModel.updatePasswordDB(edtNewPassword.getText().toString());
+                }
+                else{
+                    Toast.makeText(getContext(), "New Password and Confirm Password are not matching", Toast.LENGTH_SHORT).show();
+                }
+            /*else{
+                Toast.makeText(getContext(), "Current Password is incorrect", Toast.LENGTH_SHORT).show();
+            }*/
+        }
+        else{
+            Toast.makeText(getContext(), "Please enter all fields", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 }
+
