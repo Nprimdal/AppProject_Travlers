@@ -13,7 +13,7 @@
     <string name="txtRatingTitle">Din bedømmelse</string>
     <string name="checkBoxVisited">Jeg har besøgt denne by</string>
     <string name="btnSaveTrip">Gem</string>
-    <string name="txtSearchTitle">Udforsk byer</string>
+    <string name="txtSearchTitle">Udforsk rejsedestinationer</string>
     <string name="btnSearch">Søg</string>
     <string name="txtAddInfo">Klik på en by for at tilføje den til dit rejse bibliotek</string>
     <string name="txtNoTripsInfo">Dit rejseoverblik er tomt</string>

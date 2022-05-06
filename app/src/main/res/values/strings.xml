@@ -12,7 +12,7 @@
     <string name="txtRatingTitle">Your rating</string>
     <string name="checkBoxVisited">I have visited this city</string>
     <string name="btnSaveTrip">Save</string>
-    <string name="txtSearchTitle">Discover Cities</string>
+    <string name="txtSearchTitle">Discover travel destinations</string>
     <string name="btnSearch">Search</string>
     <string name="txtAddInfo">Click in list to add city to you trip library</string>
     <string name="txtNoTripsInfo">Your travel overview is empty</string>
