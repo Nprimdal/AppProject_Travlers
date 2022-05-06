@@ -199,8 +199,11 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
                 .title(trip.getCityName())
                 .snippet(trip.getCountryName()));
 
-        LatLng latLng = new LatLng(trip.lat, trip.lon);
-        gMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        if(gMap != null) {
+            final LatLng locLatLong = new LatLng(trip.getLat(), trip.getLon());
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locLatLong, 10));
+        }
+
     }
 
     private void viewsEdited() {
