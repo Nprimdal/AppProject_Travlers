@@ -55,11 +55,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
-                if(email==null||email.length()<1||password==null||password.length()<1){
-                    Toast.makeText(RegisterActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                String fullName = edtFullName.getText().toString();
+                if(email==null||email.length()<1||password==null||password.length()<1||fullName==null||fullName.length()<1){
+                    Toast.makeText(RegisterActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String fullName = edtFullName.getText().toString();
                 user = new User(email, fullName);
                 createNewAccount(password);
             }
