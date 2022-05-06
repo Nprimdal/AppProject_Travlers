@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Models;
 
 import java.util.ArrayList;
 import java.util.List;

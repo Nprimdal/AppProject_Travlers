@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+
+import dk.au.mad22spring.group19.appproject_travlers.R;
+import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
 
 public class SettingsFragment extends Fragment {

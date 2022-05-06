@@ -27,15 +27,15 @@
             android:value="AIzaSyA3vNvzajyp5nPdeCXuIHqZsWA0d2syejY"/>
 
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Views.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".TripActivity"
+            android:name=".Views.TripActivity"
             android:exported="false" >
 
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Views.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

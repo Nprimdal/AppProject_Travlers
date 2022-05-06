@@ -1,9 +1,11 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.ViewModels;
 
 import android.app.Activity;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+
+import dk.au.mad22spring.group19.appproject_travlers.Repository;
 
 public class LoginViewModel extends ViewModel {
 

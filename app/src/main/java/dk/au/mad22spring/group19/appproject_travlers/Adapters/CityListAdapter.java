@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import dk.au.mad22spring.group19.appproject_travlers.R;
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 
 //Code references:
 //Lecture 3: Demo 2 - RecyclerView in action

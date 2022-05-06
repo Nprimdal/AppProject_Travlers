@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import dk.au.mad22spring.group19.appproject_travlers.R;
+import dk.au.mad22spring.group19.appproject_travlers.Repository;
+import dk.au.mad22spring.group19.appproject_travlers.Services;
+import dk.au.mad22spring.group19.appproject_travlers.Views.HomeFragment;
+import dk.au.mad22spring.group19.appproject_travlers.Views.MapFragment;
+import dk.au.mad22spring.group19.appproject_travlers.Views.SearchFragment;
+import dk.au.mad22spring.group19.appproject_travlers.Views.SettingsFragment;
 
 //Reference: https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/
 //Reference: https://www.youtube.com/watch?v=Bb8SgfI4Cm4

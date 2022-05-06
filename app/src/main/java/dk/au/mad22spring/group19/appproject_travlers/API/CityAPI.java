@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.API;
 
 import android.content.Context;
 import android.util.Log;
@@ -17,6 +17,9 @@ import com.google.gson.GsonBuilder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
+import dk.au.mad22spring.group19.appproject_travlers.Repository;
 
 public class CityAPI implements Serializable {
 

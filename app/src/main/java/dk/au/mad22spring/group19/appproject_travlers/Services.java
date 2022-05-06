@@ -15,6 +15,8 @@ import androidx.core.app.NotificationCompat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
+
 
 //Inspiration from lesson 5 Services and Async processing
 public class Services extends Service {

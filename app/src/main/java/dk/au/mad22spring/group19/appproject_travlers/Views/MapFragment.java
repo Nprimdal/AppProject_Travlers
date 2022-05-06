@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Views;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -23,6 +23,11 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
+
+import dk.au.mad22spring.group19.appproject_travlers.R;
+import dk.au.mad22spring.group19.appproject_travlers.Adapters.TripListAdapter;
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
+import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
 //Reference: https://www.youtube.com/watch?v=YCFPClPjDIQ
 //           Lecture: 9

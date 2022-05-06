@@ -3,7 +3,6 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -21,12 +20,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import dk.au.mad22spring.group19.appproject_travlers.API.CityAPI;
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
+import dk.au.mad22spring.group19.appproject_travlers.Models.User;
 
 public class Repository {
 

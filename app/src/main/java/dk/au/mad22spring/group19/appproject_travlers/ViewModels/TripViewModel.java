@@ -1,10 +1,13 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.ViewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dk.au.mad22spring.group19.appproject_travlers.Repository;
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 
 public class TripViewModel extends ViewModel {
 

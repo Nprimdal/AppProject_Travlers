@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.API;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

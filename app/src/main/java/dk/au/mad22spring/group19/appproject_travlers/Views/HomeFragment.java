@@ -1,6 +1,5 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Views;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,8 +15,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.lang.reflect.Type;
 import java.util.List;
+
+import dk.au.mad22spring.group19.appproject_travlers.R;
+import dk.au.mad22spring.group19.appproject_travlers.Adapters.TripListAdapter;
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
+import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
 
 public class HomeFragment extends Fragment implements TripListAdapter.ITripClickedListener {

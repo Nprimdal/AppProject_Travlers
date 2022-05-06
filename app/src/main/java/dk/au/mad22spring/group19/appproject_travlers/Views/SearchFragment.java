@@ -1,4 +1,4 @@
-package dk.au.mad22spring.group19.appproject_travlers;
+package dk.au.mad22spring.group19.appproject_travlers.Views;
 
 import android.os.Bundle;
 
@@ -15,6 +15,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import dk.au.mad22spring.group19.appproject_travlers.Adapters.CityListAdapter;
+import dk.au.mad22spring.group19.appproject_travlers.R;
+import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
+import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
 public class SearchFragment extends Fragment  implements CityListAdapter.ICityClickedListener {
 
