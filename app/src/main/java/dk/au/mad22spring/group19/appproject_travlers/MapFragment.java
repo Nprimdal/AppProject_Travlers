@@ -45,16 +45,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, TripLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_map, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         //Set up view model
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
-
-
         tripViewModel.getTripsDB().observe(getViewLifecycleOwner(), new Observer<List<TripModel>>() {
             @Override
             public void onChanged(List<TripModel> tripModels) {
@@ -63,7 +58,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, TripLis
             }
         });
 
-
+        //set up mapFragment
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentMap);
         mapFragment.getMapAsync(this);
 
@@ -92,15 +87,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, TripLis
         if(trips!=null && trips.size()>0){
 
             TripModel tripModel;
-            LatLngBounds bounds;
-            LatLngBounds.Builder allExercisePlaces = new LatLngBounds.Builder();
+            LatLngBounds.Builder allCities = new LatLngBounds.Builder();
             for(int i=0; i<trips.size(); i++) {
                 tripModel = trips.get(i);
                 //calc bounding box
-                allExercisePlaces.include(new LatLng(tripModel.getLat(), tripModel.getLon()));
+                allCities.include(new LatLng(tripModel.getLat(), tripModel.getLon()));
 
                 //add markers
-
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(tripModel.getLat(), tripModel.getLon()))
                         .title(tripModel.getCityName())
@@ -108,21 +101,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, TripLis
                 );
 
             }
-            bounds = allExercisePlaces.build();
 
-            //use bounding box to zoom properly
-            //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 10));
         }
 
 
     }
 
-    private void setUpMapIfNeeded() {
-
-        if (mMap == null) {
-            ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentMap)).getMapAsync(this);  //this is the new way
-        }
-    }
 
     private void ShowMapTypeDialog(){
         final Dialog dialog = new Dialog(getActivity());

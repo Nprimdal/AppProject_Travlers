@@ -26,7 +26,7 @@ public class Services extends Service {
     ExecutorService execService;    //ExecutorService for running things off the main thread
     private static Repository repository;
     boolean started = false;        //indicating if Service is startet
-    int sleepTime = 60000;
+    int sleepTime = 10000;
 
     //empty constructor
     public Services() {
@@ -98,15 +98,17 @@ public class Services extends Service {
                 } catch (InterruptedException e){
                     Log.e(TAG,"run: ERROR", e);
                 }
+
                 TripModel tripModel = repository.randomTrips();
-                if (tripModel!= null){
-                    Notification notification = new NotificationCompat.Builder(getApplicationContext(),SERVICE_CHANNEL)
+
+                if (tripModel!= null) {
+                    Notification notification = new NotificationCompat.Builder(getApplicationContext(), SERVICE_CHANNEL)
                             .setContentTitle("" + "Today's random trip: " + tripModel.cityName)
                             .setContentText("Country: " + tripModel.countryName)
                             .setSmallIcon(R.drawable.ic_baseline_flight_24)
                             .build();
                     NotificationManager man = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    man.notify(NOTIFICATION_ID,notification);
+                    man.notify(NOTIFICATION_ID, notification);
                 }
 
                 if(started){

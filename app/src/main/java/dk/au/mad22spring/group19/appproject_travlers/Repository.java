@@ -182,9 +182,8 @@ public class Repository {
             int randomTrip = value.nextInt(modelTrips.getValue().size());
             return modelTrips.getValue().get(randomTrip);
         }
-        return  null;
 
-
+        return null;
     }
 
    //DB: Login
