@@ -11,15 +11,11 @@
         android:id="@+id/txtAddInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="@string/txtAddInfo"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnSearch"
+        app:layout_constraintStart_toStartOf="@+id/edtSearchField"
         app:layout_constraintTop_toBottomOf="@+id/edtSearchField" />
 
     <TextView
@@ -40,10 +36,10 @@
 
     <EditText
         android:id="@+id/edtSearchField"
-        android:layout_width="254dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/text_view_shape"
@@ -60,8 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/btnSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSearchTitle" />
@@ -70,12 +65,11 @@
         android:id="@+id/rcvCities"
         android:layout_width="0dp"
         android:layout_height="254dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/text_view_shape"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtAddInfo"
         app:layout_constraintTop_toBottomOf="@+id/txtAddInfo"
         tools:itemCount="3"
         tools:listitem="@layout/list_item_city" />
