@@ -50,6 +50,11 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
             public void onChanged(List<TripModel> tripModels) {
                 trips = tripModels;
                 tripAdapter.updateCityModel(trips);
+
+                if(trips.size() == 0){
+                    rcv.setVisibility(View.GONE);
+                    layoutAddCity.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -59,10 +64,6 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         rcv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rcv.setAdapter(tripAdapter);
 
-
-        //Get views
-        layoutAddCity = (LinearLayout) view.findViewById(R.id.homeAddCityLayout);
-
         //Add button - replaces view with searchFragment
         btnAddCity = (Button) view.findViewById(R.id.btnAddCity);
         btnAddCity.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +72,10 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SearchFragment()).addToBackStack(null).commit();
             }
         });
+
+
+        //Get views
+        layoutAddCity = (LinearLayout) view.findViewById(R.id.homeAddCityLayout);
 
         return view;
     }
@@ -84,8 +89,4 @@ public class HomeFragment extends Fragment implements TripListAdapter.ITripClick
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new TripDetailsFragment()).addToBackStack(null).commit();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }
