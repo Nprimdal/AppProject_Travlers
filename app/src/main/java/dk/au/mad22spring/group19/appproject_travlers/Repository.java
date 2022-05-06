@@ -3,6 +3,7 @@ package dk.au.mad22spring.group19.appproject_travlers;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -197,8 +198,10 @@ public class Repository {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Login successful");
                     userLoggedIn.postValue(true);
+                    Toast.makeText(activity, "Login successful!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(TAG, "Login failed: ", task.getException());
+                    Toast.makeText(activity, "Failed to login!", Toast.LENGTH_SHORT).show();
                     userLoggedIn.postValue(false);
                 }
             }
