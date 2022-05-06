@@ -30,7 +30,7 @@ public class SettingsFragment extends Fragment {
     //FirebaseUser user;
     private FloatingActionButton fabSave;
     //private FirebaseAuth mAuth;
-    private EditText edtOldPassword, edtNewPassword, edtComfirmPassword;
+    private EditText edtNewPassword, edtComfirmPassword;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -46,7 +46,6 @@ public class SettingsFragment extends Fragment {
 
         //Set up views
         edtComfirmPassword = (EditText) view.findViewById(R.id.edtConfirmPassword);
-        edtOldPassword = (EditText) view.findViewById(R.id.edtOldPassword);
         edtNewPassword = (EditText) view.findViewById(R.id.edtNewPassword);
 
         //Set up save button
@@ -88,9 +87,12 @@ public class SettingsFragment extends Fragment {
         String newPassword = edtNewPassword.getText().toString();
         String confirmPassword = edtComfirmPassword.getText().toString();
 
-        if(!edtOldPassword.getText().toString().isEmpty() && !edtNewPassword.getText().toString().isEmpty() && !edtComfirmPassword.getText().toString().isEmpty()){
+        if(!edtNewPassword.getText().toString().isEmpty() && !edtComfirmPassword.getText().toString().isEmpty()){
             if(newPassword.equals(confirmPassword)){
                 tripViewModel.updatePasswordDB(edtNewPassword.getText().toString());
+                Toast.makeText(getContext(), "Password is updated!", Toast.LENGTH_SHORT).show();
+                edtNewPassword.getText().clear();
+                edtComfirmPassword.getText().clear();
                 }
             else{
                 Toast.makeText(getContext(), "New Password and Confirm Password are not matching", Toast.LENGTH_SHORT).show();

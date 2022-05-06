@@ -41,6 +41,7 @@ public class CityAPI implements Serializable {
     //Gets cities from api by name
     public MutableLiveData<ArrayList<TripModel>> getCitiesByName(String cityName){
 
+        tripsModelList.getValue().clear();
         tripsModelList.postValue(new ArrayList<>());
         loadCities(cityName);
         return tripsModelList;
@@ -54,7 +55,6 @@ public class CityAPI implements Serializable {
 
     //Loads city data from base url
     public void loadCities(String cityName){
-        //String baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=a98c6ec87e41a4e73b8f9f9daa3e170f&units=metric";
         String baseUrl = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=a98c6ec87e41a4e73b8f9f9daa3e170f&units=metric";
         sendRequest(baseUrl);
     }
