@@ -11,7 +11,6 @@ import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 
 public class TripViewModel extends ViewModel {
 
-    //References
     private Repository repository;
     private LiveData<TripModel> currentSelection;
 

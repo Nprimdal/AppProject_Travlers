@@ -35,8 +35,9 @@ import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
 //References
+//ViewModel: Lecture 2 - Demo/live (Clicker app part 2)
 //AlertDialog implementation: https://stackoverflow.com/questions/42983407/making-a-confirmation-dialog-box-for-deletion
-
+//Disable save-button if EditView is not changed: https://stackoverflow.com/questions/22680106/how-to-disable-button-if-edittext-is-empty
 
 public class TripDetailsFragment extends Fragment implements OnMapReadyCallback {
 
@@ -134,7 +135,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         return view;
     }
 
-
+    //Update UI with trip data
     private void updateTripDetailsUI() {
         //Set trip data
         txtCityName.setText(trip.getCityName());
@@ -152,6 +153,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         }
     }
 
+    //Save trip
     private void saveTripChanges(){
         trip.setTravelUserRating(rtnUserRating.getRating());
         trip.setTravelPlanNotes(edtTravelPlan.getText().toString());
@@ -162,6 +164,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
     }
 
+    //Delete trip
     private void deleteTrip(@NonNull TripModel trip){
 
         //Builds and shows Dialog to make user confirm delete
@@ -206,6 +209,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
 
     }
 
+    //Enable save-button when EditView has changed
     private void viewsEdited() {
         ArrayList<EditText> editTexts = new ArrayList();
         editTexts.add(edtTravelJournal);
@@ -233,8 +237,7 @@ public class TripDetailsFragment extends Fragment implements OnMapReadyCallback 
             });
         }
 
-
-
+        //Rating change listener
         rtnUserRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {

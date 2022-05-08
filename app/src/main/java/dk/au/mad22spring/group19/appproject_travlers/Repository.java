@@ -30,6 +30,9 @@ import dk.au.mad22spring.group19.appproject_travlers.API.CityAPI;
 import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 import dk.au.mad22spring.group19.appproject_travlers.Models.User;
 
+//Code references:
+//Lecture 8: Demo - Tracker
+
 public class Repository {
 
     //Constants

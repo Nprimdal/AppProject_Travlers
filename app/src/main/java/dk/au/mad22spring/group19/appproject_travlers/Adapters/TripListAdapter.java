@@ -17,7 +17,6 @@ import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 
 //Code references:
 //Lecture 3: Demo 2 - RecyclerView in action
-//Clear method: https://stackoverflow.com/questions/29978695/remove-all-items-from-recyclerview
 
 public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripViewHolder> {
 

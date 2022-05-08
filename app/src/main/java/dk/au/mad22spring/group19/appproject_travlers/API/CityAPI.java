@@ -21,9 +21,11 @@ import java.util.ArrayList;
 import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 import dk.au.mad22spring.group19.appproject_travlers.Repository;
 
+//Code references:
+//Lecture 6: Demo - Rick and Morty Gallery with Volley and Glide
+
 public class CityAPI implements Serializable {
 
-    //References:
     private Repository repository;
     private Context context;
     private MutableLiveData<ArrayList<TripModel>> tripsModelList;

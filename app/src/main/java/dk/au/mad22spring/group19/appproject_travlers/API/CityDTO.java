@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 //Imported fra GSON to JSON
+//Class created with: https://www.jsonschema2pojo.org/
+
 public class CityDTO {
 
     @SerializedName("coord")

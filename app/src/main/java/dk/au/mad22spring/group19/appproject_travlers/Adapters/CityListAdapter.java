@@ -100,7 +100,6 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityVi
            for (int i = 0; i < cities.size(); i++) {
 
            cities.remove(0);
-               Log.d("HEJ", "Loop ");
 
            }
             notifyItemRangeRemoved(0, cities.size());

@@ -17,8 +17,9 @@ import dk.au.mad22spring.group19.appproject_travlers.Views.MapFragment;
 import dk.au.mad22spring.group19.appproject_travlers.Views.SearchFragment;
 import dk.au.mad22spring.group19.appproject_travlers.Views.SettingsFragment;
 
-//Reference: https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/
-//Reference: https://www.youtube.com/watch?v=Bb8SgfI4Cm4
+//Reference (Navigation bar): https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/
+//Reference (Navigation bar): https://www.youtube.com/watch?v=Bb8SgfI4Cm4
+
 public class TripActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;

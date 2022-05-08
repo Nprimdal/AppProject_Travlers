@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import dk.au.mad22spring.group19.appproject_travlers.R;
 import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
+//Code references:
+//Lecture 8: Demo - Tracker
+//Disable save-button if EditView is not changed: https://stackoverflow.com/questions/22680106/how-to-disable-button-if-edittext-is-empty
 
 public class SettingsFragment extends Fragment {
 
@@ -82,6 +85,9 @@ public class SettingsFragment extends Fragment {
         startActivity(loginIntent);
     }
 
+    //Verify all fields have been filled out
+    //Check if new password equals confirm password
+    //Save settings
     private void saveSettings() {
 
         String newPassword = edtNewPassword.getText().toString();
@@ -103,6 +109,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+    //Enable save-button if EditView has changed
     private void viewsEdited() {
         ArrayList<EditText> editTexts = new ArrayList();
         editTexts.add(edtNewPassword);

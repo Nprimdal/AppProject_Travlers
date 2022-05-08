@@ -21,9 +21,13 @@ import dk.au.mad22spring.group19.appproject_travlers.R;
 import dk.au.mad22spring.group19.appproject_travlers.Models.TripModel;
 import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 
+//Code references:
+//Lecture 3 - Demo 2 (RecyclerView in action)
+//ViewModel: Lecture 2 - Demo/live (Clicker app part 2)
+//Lecture 8 - Demo (Fragments for dual-pane Master-Detail flow - with communication through Activity)
+
 public class SearchFragment extends Fragment  implements CityListAdapter.ICityClickedListener {
 
-    //References:
     private RecyclerView rcv;
     private CityListAdapter cityListAdaptor;
     private ArrayList<TripModel> trips = new ArrayList<>();
