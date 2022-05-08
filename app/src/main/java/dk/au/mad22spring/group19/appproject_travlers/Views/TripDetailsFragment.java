@@ -38,6 +38,7 @@ import dk.au.mad22spring.group19.appproject_travlers.ViewModels.TripViewModel;
 //ViewModel: Lecture 2 - Demo/live (Clicker app part 2)
 //AlertDialog implementation: https://stackoverflow.com/questions/42983407/making-a-confirmation-dialog-box-for-deletion
 //Disable save-button if EditView is not changed: https://stackoverflow.com/questions/22680106/how-to-disable-button-if-edittext-is-empty
+//Navigate to another fragment: Lecture 8 - Demo (Fragments for dual-pane Master-Detail flow - with communication through Activity)
 
 public class TripDetailsFragment extends Fragment implements OnMapReadyCallback {
 
